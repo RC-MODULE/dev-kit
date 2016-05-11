@@ -1,13 +1,13 @@
 
-NMPP      = $(ROOT)
+#NMPP      = $(ROOT)
 #http_proxy        = http://user:pass@proxy:80/       (for wget usage)
 
-NEURO    ?= $(NMPP)/nmsdk
-VSHELL32 ?= $(NMPP)/vshell32
-MC5103    = $(NMPP)/mc5103sdk
-MC7601    = $(NMPP)/mc7601sdk
-MB7707    = $(NMPP)/mb7707sdk
-GNUWIN32  = $(realpath $(NMPP)/gnuwin32/bin)
+#NEURO    ?= $(NMPP)/nmsdk
+#VSHELL32 ?= $(NMPP)/vshell32
+#MC5103    = $(NMPP)/mc5103sdk
+#MC7601    = $(NMPP)/mc7601sdk
+#MB7707    = $(NMPP)/mb7707sdk
+GNUWIN32   = $(realpath ./gnuwin32/bin)
 
 
 

@@ -95,7 +95,7 @@ PACKAGES_ARC = $(notdir $(ARC_URLS))
 PACKAGES_GNU:= $(subst master.zip,cecho.zip,$(PACKAGES_GNU))
 #PACKAGES_ARM:= $(subst master.zip,nmc-utils.zip,$(PACKAGES_ARM))
 
-.PHONY = arm-toolchain
+.PHONY = arm-toolchain install-arc
 
 install-nmc: nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 
 
@@ -162,7 +162,9 @@ vshell32: $(notdir $(VSHELL32_URL))
 nm_io: $(notdir $(NM_IO_URL))
 	$(OS_UNPACK) $(<)
 	
-gnuwin32/bin/.gnu_installed: $(notdir $(COREUTILS_URL)) gnuwin32 putty.zip cecho.zip $(notdir $(DIFFUTILS_URL)) 
+gnuwin32/bin/.gnu_installed: $(notdir $(COREUTILS_URL)) putty.zip cecho.zip $(notdir $(DIFFUTILS_URL)) 
+	-mkdir gnuwin32
+	-mkdir gnuwin32\bin
 	$(OS_UNPACK) $(notdir $(COREUTILS_URL)) $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(COREDEPS_URL))  $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(FIND_URL))      $(OS_TODIR) gnuwin32
@@ -170,51 +172,53 @@ gnuwin32/bin/.gnu_installed: $(notdir $(COREUTILS_URL)) gnuwin32 putty.zip cecho
 	$(OS_UNPACK) $(notdir $(PUTTY_URL))     $(OS_TODIR) gnuwin32\bin
 	$(OS_UNPACK) cecho.zip                  $(OS_TODIR) gnuwin32
 	-copy .\gnuwin32\cecho-master\cecho\bin\Release\cecho.exe .\gnuwin32\bin
-	@echo "GNU utils are installed" >> $(@)
+	@echo GNU utils have been installed >> $(@)
 
-gnuwin32/bin/.arc_installed: $(PACKAGES_ARC) gnuwin32
+gnuwin32/bin/.arc_installed: $(PACKAGES_ARC) 
+	-mkdir gnuwin32
+	-mkdir gnuwin32\bin
 	$(OS_UNPACK) $(notdir $(ZIP7_URL))   $(OS_TODIR) gnuwin32\bin
 	$(OS_UNPACK) $(notdir $(TAR_URL))  	 $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(TARDEP_URL)) $(OS_TODIR) gnuwin32
-	@echo "tar & 7z are installed" >> $(@)
+	@echo "tar & 7z has been installed" > $(@)
 
 gnumake: make-3.81-bin.zip make-3.81-dep.zip 
 	-mkdir gnumake
 	$(OS_UNPACK) make-3.81-bin.zip    $(OS_TODIR) gnumake
 	$(OS_UNPACK) make-3.81-dep.zip    $(OS_TODIR) gnumake
 	
-rootfs: armhf-sdk-sysroot.tar install-arc
-	-mkdir $(@)
-	$(GNUWIN32)/tar -vxf $(<) -C $(@)
+rootfs: rootfs/.installed
 
-armhf-sdk-sysroot.tar: $(notdir $(SYSROOT_URL)) install-arc
-	$(GNUWIN32)/7za e $(<)
+rootfs/.installed: $(notdir $(SYSROOT_URL))  gnuwin32/bin/.arc_installed
+	-mkdir rootfs
+	$(GNUWIN32)/7za e $(notdir $(SYSROOT_URL)) -y
+	$(GNUWIN32)/tar -vxf armhf-sdk-sysroot.tar -C rootfs
+	@echo rootfs has been installed > $(@)
 	
-nmc-utils-0.1.1: 0.1.1.zip install-arc
+nmc-utils-0.1.1: 0.1.1.zip gnuwin32/bin/.arc_installed
 	$(GNUWIN32)/7za x $(<) 
 
 #gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32	
 arm-toolchain: Raspberry
 
 Raspberry: 	$(notdir $(ARM_TOOLCHAIN_URL))
-	@echo ***********************************************************************
-	@echo ** install arm toolchain to './nmpp/deps/' folder for default pathes **
-	@echo ***********************************************************************
-	$(notdir $(ARM_TOOLCHAIN_URL))
+	@echo **************************************************************************************************************
+	@echo ** Install raspberry-gcc4.9.2-r2.exe manualy. It is recommended to install it to default path               **
+	@echo **************************************************************************************************************
+
+#	$(notdir $(ARM_TOOLCHAIN_URL))
 	
-gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32: $(notdir $(ARM_TOOLCHAIN_URL)) install-arc
+gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32: $(notdir $(ARM_TOOLCHAIN_URL)) gnuwin32/bin/.arc_installed
 #	$(GNUWIN32)/7za x $(<) -y
 
-raspbian-jessie-matlab: raspbian-jessie-matlab.tar install-arc
-	$(GNUWIN32)/tar -vxf $(<) 
-	
-raspbian-jessie-matlab.tar: $(notdir $(FIRMWARE7707_URL)) install-arc
-	$(GNUWIN32)/7za e $(<)	
-	
-gnuwin32:
-	-mkdir gnuwin32
-	-mkdir gnuwin32\bin
+raspbian-jessie-matlab: raspbian-jessie-matlab/.installed
 
+raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL)) gnuwin32/bin/.arc_installed
+	$(GNUWIN32)/7za e $(<)	-y
+	$(GNUWIN32)/tar -vxf raspbian-jessie-matlab.tar
+	@echo raspbian-jessie-matlab has been installed > $(@)
+	
+	
 	
 #------------------------------------------------------------------------------------	
 clean:
