@@ -3,7 +3,6 @@ mkdir gnumake
 powershell  -ExecutionPolicy Bypass -file unzip.ps1 make-3.81-bin.zip -d gnumake
 powershell  -ExecutionPolicy Bypass -file unzip.ps1 make-3.81-dep.zip -d gnumake
 
-@pause
 @echo off
 @echo GNU make-3.81 have installed to %~dp0\gnumake\bin
 @echo.
@@ -12,8 +11,8 @@ powershell  -ExecutionPolicy Bypass -file unzip.ps1 make-3.81-dep.zip -d gnumake
 @echo.
 @set /P x=Do you want to add "%~dp0\gnumake\bin" folder to the PATH environment variable? (y/n)?
 @set x=%x:~0,1%
-@if (%x%)==(y) call addtopath %~dp0\gnumake\bin
-@if (%x%)==(Y) call addtopath %~dp0\gnumake\bin
+@if (%x%)==(y) call add2path %~dp0\gnumake\bin
+@if (%x%)==(Y) call add2path %~dp0\gnumake\bin
 @pause
 
 rem setx path "%~dp0\gnumake\bin;%path%;" /M
