@@ -62,7 +62,10 @@ ifeq ($(OS),Windows_NT)
 	  $(CECHO_URL) 	 \
 	  $(GNUMAKE_URL) \
 	  $(GNUMAKEDEPS_URL) \
-	  $(DIFFUTILS_URL) 
+	  $(DIFFUTILS_URL) \
+	  $(WGETBIN_URL) \
+	  $(WGETDEP_URL) 
+	  
 	  
   
   ARM_URLS = \
@@ -171,6 +174,8 @@ nmcalculator: $(notdir $(NMCALC_URL))
 gnuwin32/bin/.gnu_installed: $(notdir $(COREUTILS_URL)) putty.zip $(notdir $(DIFFUTILS_URL)) 
 	-mkdir gnuwin32
 	-mkdir gnuwin32\bin
+	$(OS_UNPACK) $(notdir $(WGETBIN_URL))   $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(WGETDEP_URL))   $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(COREUTILS_URL)) $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(COREDEPS_URL))  $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(FIND_URL))      $(OS_TODIR) gnuwin32
