@@ -58,8 +58,7 @@ ifeq ($(OS),Windows_NT)
 			 $(realpath $(MC7601)/bin);\
 			 $(realpath $(VSHELL32)/bin); \
   
-  PATH    := $(PATH);C:\SysGCC\Raspberry\bin;$(realpath $(ROOT)/Raspberry/bin);$(PATH_DEP)
-  
+  PATH    := $(PATH);C:\SysGCC\Raspberry\bin;$(realpath $(ROOT)/Raspberry/bin);$(realpath ./gnuwin32/bin)
   # 'Raspberry\bin' shuld be first in PATH then $(GNUWIN32), because of 'libiconv-2.dll' version conflict.
   # But 'make.exe' ver-3.81 must be found first in then PATH then 'make.exe' ver-3.82 located in Raspberry\bin because of their non-campabality 
   
