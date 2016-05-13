@@ -1,6 +1,7 @@
 # dev-pack 1.0
 
 #http_proxy ?=http://username:password@proxy:80/
+
 include global.mk
 
 all: get-all install-all
@@ -234,6 +235,13 @@ clean:
 #a: 
 #	powershell  -ExecutionPolicy Bypass -file wget2.ps1	https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
 #
+t:
+	wget --no-check-certificate https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip 
+
+t2:
+	wget --no-check-certificate http://www.7-zip.org/a/7za920.zip 
+	
+	
 #test:	
 #	powershell  -ExecutionPolicy Bypass -file test.ps1
 #  http://www.7-zip.org/a/7za920.zip	
