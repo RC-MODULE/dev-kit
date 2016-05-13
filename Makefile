@@ -1,6 +1,7 @@
 # dev-pack 1.0
 
 #http_proxy ?=http://username:password@proxy:80/
+http_proxy =http://mushkaev:sergpasw@module.proxy.ru:80/
 
 include global.mk
 
