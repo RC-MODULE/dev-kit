@@ -33,6 +33,7 @@ ifeq ($(OS),Windows_NT)
   GNUMAKEDEPS_URL= http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-dep.zip
   WGETBIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-bin.zip
   WGETDEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-dep.zip
+  WINPCAP_URL    = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
   # PUTTY's homepage http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
   
  # archivators (7z+tar) 
@@ -75,7 +76,8 @@ ifeq ($(OS),Windows_NT)
 	  $(NMC_UTILS_URL) \
 	  $(PUTTY_URL)	  \
 	  $(FIRMWARE7707_URL) \
-	  $(ARM_TOOLCHAIN_URL) 
+	  $(ARM_TOOLCHAIN_URL) \
+	  $(WINPCAP_URL)
 	  
   ARC_URLS = \
       $(TAR_URL) \
@@ -227,7 +229,8 @@ raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL)) gnuwin32/bin/.a
 	@echo raspbian-jessie-matlab has been installed > $(@)
 	
 	
-	
+#winpcap:
+#	WINPCAP_URL
 #------------------------------------------------------------------------------------	
 clean:
 	-$(OS_RM) *.zip *.exe *.tgz *.tar *.gz
