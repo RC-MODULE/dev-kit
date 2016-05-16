@@ -2,7 +2,7 @@
 #NMPP      = $(ROOT)
 #http_proxy        = http://user:pass@proxy:80/       (for wget usage)
 
-NEURO     ?= $(realpath $(ROOT)/nmsdk)
+NEURO     ?= $(realpath ./nmsdk)
 GNUWIN32   = $(realpath ./gnuwin32/bin)
 
 

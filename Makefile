@@ -230,6 +230,8 @@ raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL)) gnuwin32/bin/.a
 	tar -vxf raspbian-jessie-matlab.tar
 	@echo raspbian-jessie-matlab has been installed > $(@)
 	
+libeasynmc:
+	$(MAKE) -C nmc-utils-0.1.1/libeasynmc-nmc
 	
 #winpcap:
 #	WINPCAP_URL
