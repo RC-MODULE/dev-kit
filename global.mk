@@ -2,11 +2,7 @@
 #NMPP      = $(ROOT)
 #http_proxy        = http://user:pass@proxy:80/       (for wget usage)
 
-#NEURO    ?= $(NMPP)/nmsdk
-#VSHELL32 ?= $(NMPP)/vshell32
-#MC5103    = $(NMPP)/mc5103sdk
-#MC7601    = $(NMPP)/mc7601sdk
-#MB7707    = $(NMPP)/mb7707sdk
+NEURO     ?= $(realpath $(ROOT)/nmsdk)
 GNUWIN32   = $(realpath ./gnuwin32/bin)
 
 
@@ -52,7 +48,7 @@ ifeq ($(OS),Windows_NT)
   OS_TODIR = -d
   OS_UNPACK= $(OS_UNZIP)
   PATH_DEP = $(GNUWIN32);\
-			 $(realpath $(NEURO)/bin);\
+			 $(NEURO)/bin);\
 			 $(realpath $(MC5103)/bin);\
 			 $(realpath $(MB7707)/bin);\
 			 $(realpath $(MC7601)/bin);\

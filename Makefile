@@ -216,6 +216,8 @@ nmc-utils-0.1.1: 0.1.1.zip gnuwin32/bin/.arc_installed
 arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL))
 	@echo **************************************************************************************************************
 	@echo ** Install raspberry-gcc4.9.2-r2.exe manualy. It is recommended to install it to default path               **
+	@echo ** It is strongly recommended to delete make.exe from Raspberry/bin folder because of its                   **
+	@exho ** mulfuction in 3.82 version. Use 3.81 version to process Makefiles     instead                            **
 	@echo **************************************************************************************************************
 
 #gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32: $(notdir $(ARM_TOOLCHAIN_URL)) gnuwin32/bin/.arc_installed
