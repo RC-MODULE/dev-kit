@@ -26,6 +26,10 @@ ifeq ($(OS),Windows_NT)
   DIFFUTILS_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-bin.zip
   DIFFDEPS_URL   = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-dep.zip
   FIND_URL       = https://sourceforge.net/projects/gnuwin32/files/findutils/4.2.20-2/findutils-4.2.20-2-bin.zip
+  GREPBIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-bin.zip
+  GREPDEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-dep.zip
+# BCBIN_URL      = http://downloads.sourceforge.net/project/gnuwin32/bc/1.06-2/bc-1.06-2-bin.zip
+# BCDEP_URL      = http://downloads.sourceforge.net/project/gnuwin32/bc/1.06-2/bc-1.06-2-dep.zip
   CECHO_URL 	 = https://github.com/elisherer/cecho/archive/master.zip
   PUTTY_URL      = http://tartarus.org/~simon/putty-snapshots/x86/putty.zip
   GNUMAKE_URL	 = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-bin.zip 
@@ -66,7 +70,11 @@ ifeq ($(OS),Windows_NT)
 	  $(GNUMAKEDEPS_URL) \
 	  $(DIFFUTILS_URL) \
 	  $(WGETBIN_URL) \
-	  $(WGETDEP_URL) 
+	  $(WGETDEP_URL) \
+	  $(GREPBIN_URL) \
+	  $(GREPDEP_URL) 
+#	  $(BCBIN_URL) \
+#	  $(BCDEP_URL) 
 	  
 	  
   
@@ -182,10 +190,14 @@ gnuwin32/bin/.gnu_installed: $(notdir $(COREUTILS_URL)) putty.zip $(notdir $(DIF
 	$(OS_UNPACK) $(notdir $(COREUTILS_URL)) $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(COREDEPS_URL))  $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(FIND_URL))      $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(GREPBIN_URL))   $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(GREPDEP_URL))   $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(BCBIN_URL))     $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(BCDEP_URL))     $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(DIFFUTILS_URL)) $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(PUTTY_URL))     $(OS_TODIR) gnuwin32\bin
 	$(OS_UNPACK) cecho.zip                  $(OS_TODIR) gnuwin32
-	-copy .\gnuwin32\cecho-master\cecho\bin\Release\cecho.exe .\gnuwin32\bin
+	-copy .\gnuwin32\cecho-master\cecho\bin\Release\cecho.exe .\gnuwin32\bin /Y
 	@echo GNU utils have been installed >> $(@)
 
 gnuwin32/bin/.arc_installed: $(PACKAGES_ARC) 
@@ -216,7 +228,7 @@ arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL))
 	@echo **************************************************************************************************************
 	@echo ** Install raspberry-gcc4.9.2-r2.exe manualy. It is recommended to install it to default path               **
 	@echo ** It is strongly recommended to delete make.exe from Raspberry/bin folder because of its                   **
-	@exho ** mulfuction in 3.82 version. Use 3.81 version to process Makefiles     instead                            **
+	@echo ** mulfuction in 3.82 version. Use 3.81 version to process Makefiles     instead                            **
 	@echo **************************************************************************************************************
 
 #gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32: $(notdir $(ARM_TOOLCHAIN_URL)) gnuwin32/bin/.arc_installed
