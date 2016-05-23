@@ -1,6 +1,6 @@
 # dev-pack 1.0
 
-#http_proxy ?=http://username:password@proxy:80/
+
 
 include global.mk
 
@@ -32,8 +32,8 @@ ifeq ($(OS),Windows_NT)
 # BCDEP_URL      = http://downloads.sourceforge.net/project/gnuwin32/bc/1.06-2/bc-1.06-2-dep.zip
   CECHO_URL 	 = https://github.com/elisherer/cecho/archive/master.zip
   PUTTY_URL      = http://tartarus.org/~simon/putty-snapshots/x86/putty.zip
-  GNUMAKE_URL	 = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-bin.zip 
-  GNUMAKEDEPS_URL= http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-dep.zip
+  GNUMAKEBIN_URL = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-bin.zip 
+  GNUMAKEDEP_URL = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-dep.zip
   WGETBIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-bin.zip
   WGETDEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-dep.zip
   WINPCAP_URL    = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
@@ -66,8 +66,8 @@ ifeq ($(OS),Windows_NT)
 	  $(COREDEPS_URL)	 \
 	  $(FIND_URL)       \
 	  $(CECHO_URL) 	 \
-	  $(GNUMAKE_URL) \
-	  $(GNUMAKEDEPS_URL) \
+	  $(GNUMAKEBIN_URL) \
+	  $(GNUMAKEDEP_URL) \
 	  $(DIFFUTILS_URL) \
 	  $(WGETBIN_URL) \
 	  $(WGETDEP_URL) \
