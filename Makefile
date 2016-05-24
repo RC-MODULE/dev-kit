@@ -1,95 +1,92 @@
 # dev-pack 1.0
 
-
-
 include global.mk
 
 all: get-all install-all
 
 ifeq ($(OS),Windows_NT)
- # RCM Module production packages 
-  SDK_MC5103_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
-  SDK_MB7707_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_02_x32.zip
-  SDK_MC7601_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
-  NMSDK_URL      = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
-  NM_IO_URL      = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
-  VSHELL32_URL   = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
-  VSHELL32_DIST  = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
-  NMC_UTILS_URL  = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
-  NMCALC_URL     = http://www.module.ru/mb7707/NeuroMatrix/nmcalculator.zip 
-  SYSROOT_URL    = http://www.module.ru/mb7707/random/matlab-dev/armhf-sdk-sysroot.tgz
-  FIRMWARE7707_URL=http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
-  
- # 3rd party production packages 
-  COREUTILS_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-bin.zip
-  COREDEPS_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-dep.zip
-  DIFFUTILS_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-bin.zip
-  DIFFDEPS_URL   = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-dep.zip
-  FIND_URL       = https://sourceforge.net/projects/gnuwin32/files/findutils/4.2.20-2/findutils-4.2.20-2-bin.zip
-  GREPBIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-bin.zip
-  GREPDEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-dep.zip
-# BCBIN_URL      = http://downloads.sourceforge.net/project/gnuwin32/bc/1.06-2/bc-1.06-2-bin.zip
-# BCDEP_URL      = http://downloads.sourceforge.net/project/gnuwin32/bc/1.06-2/bc-1.06-2-dep.zip
-  CECHO_URL 	 = https://github.com/elisherer/cecho/archive/master.zip
-  PUTTY_URL      = http://tartarus.org/~simon/putty-snapshots/x86/putty.zip
-  GNUMAKEBIN_URL = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-bin.zip 
-  GNUMAKEDEP_URL = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-dep.zip
-  WGETBIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-bin.zip
-  WGETDEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-dep.zip
-  WINPCAP_URL    = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
-  # PUTTY's homepage http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
-  
- # archivators (7z+tar) 
-  TAR_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-bin.zip
-  TARDEP_URL     = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-dep.zip
-  ZIP7_URL       = http://www.7-zip.org/a/7za920.zip
+## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
+  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
+  VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
+  VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
+  NMCALC_URL         = http://www.module.ru/mb7707/NeuroMatrix/nmcalculator.zip 
+  NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
+  # Pure NMC Board support:
+  SDK_MC5103_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
+  SDK_MC7601_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
+  SDK_MB7707_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_02_x32.zip
+  WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
+  # ARM-NMC MB7707 support :
+  NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
+  SYSROOT_URL        = http://www.module.ru/mb7707/random/matlab-dev/armhf-sdk-sysroot.tgz
+  FIRMWARE7707_URL   = http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
+  ARM_TOOLCHAIN_URL  = http://sysprogs.com/files/gnutoolchains/raspberry/raspberry-gcc4.9.2-r2.exe
+ 
+## UTILITIES:
+  COREUTILS_BIN_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-bin.zip
+  COREUTILS_DEP_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-dep.zip
+  DIFFUTILS_BIN_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-bin.zip
+  DIFFUTILS_DEP_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-dep.zip
+  FIND_URL           = https://sourceforge.net/projects/gnuwin32/files/findutils/4.2.20-2/findutils-4.2.20-2-bin.zip
+  GREP_BIN_URL       = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-bin.zip
+  GREP_DEP_URL       = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-dep.zip
+  CECHO_URL 	     = https://github.com/elisherer/cecho/archive/master.zip
+  PUTTY_URL          = http://tartarus.org/~simon/putty-snapshots/x86/putty.zip
+  GNUMAKE_BIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-bin.zip 
+  GNUMAKE_DEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-dep.zip
+  WGET_BIN_URL       = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-bin.zip
+  WGET_DEP_URL       = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-dep.zip
 
- #gcc-linaro-arm 
-#  ARM_TOOLCHAIN_URL    = https://launchpad.net/linaro-toolchain-binaries/trunk/2013.10/+download/gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32.zip
-  ARM_TOOLCHAIN_URL = http://sysprogs.com/files/gnutoolchains/raspberry/raspberry-gcc4.9.2-r2.exe
-  
+
+	  
+## ARCHIVATORS:
+  TAR_BIN_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-bin.zip
+  TAR_DEP_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-dep.zip
+  ZIP7_URL           = http://www.7-zip.org/a/7za920.zip
+
+## SCRIPTS:
+  LUA_URL        = http://downloads.sourceforge.net/project/luabinaries/5.2.4/Tools%20Executables/lua-5.2.4_Win32_bin.zip
+
+## LINKS:
+# * [PUTTY's homepage]           http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 # * [Visual Studio 2005 Express](http://apdubey.blogspot.ru/2009/04/microsoft-visual-studio-2005-express.html)
 # * [Visual Studio 2013 Express](https://www.microsoft.com/en-US/download/details.aspx?id=44914)    
   
   NMC_URLS = \
-	  $(SDK_MC5103_URL) \
-	  $(SDK_MB7707_URL) \
-	  $(SDK_MC7601_URL) \
-	  $(NMSDK_URL)      \
-	  $(NM_IO_URL)      \
-	  $(VSHELL32_URL)   \
-	  $(VSHELL32_DIST)  \
-	  $(NMCALC_URL)
+	$(NMSDK_URL)      \
+	$(NM_IO_URL)      \
+	$(VSHELL32_URL)   \
+	$(VSHELL32_DIST)  \
+	$(NMCALC_URL) \
+	$(SDK_MC5103_URL) \
+	$(SDK_MC7601_URL) \
+	$(SDK_MB7707_URL) \
+	$(WINPCAP_URL)
 	  
   GNU_URLS =\
-	  $(COREUTILS_URL)	 \
-	  $(COREDEPS_URL)	 \
-	  $(FIND_URL)       \
-	  $(CECHO_URL) 	 \
-	  $(GNUMAKEBIN_URL) \
-	  $(GNUMAKEDEP_URL) \
-	  $(DIFFUTILS_URL) \
-	  $(WGETBIN_URL) \
-	  $(WGETDEP_URL) \
-	  $(GREPBIN_URL) \
-	  $(GREPDEP_URL) 
-#	  $(BCBIN_URL) \
-#	  $(BCDEP_URL) 
+	$(COREUTILS_BIN_URL)	 \
+	$(COREUTILS_DEP_URL)	 \
+	$(DIFFUTILS_BIN_URL) \
+	$(FIND_URL)       \
+	$(CECHO_URL) 	 \
+	$(PUTTY_URL)	  \
+	$(GNUMAKE_BIN_URL) \
+	$(GNUMAKE_DEP_URL) \
+	$(WGET_BIN_URL) \
+	$(WGET_DEP_URL) \
+	$(GREP_BIN_URL) \
+	$(GREP_DEP_URL) 
 	  
-	  
-  
   ARM_URLS = \
-	  $(SYSROOT_URL) \
-	  $(NMC_UTILS_URL) \
-	  $(PUTTY_URL)	  \
-	  $(FIRMWARE7707_URL) \
-	  $(ARM_TOOLCHAIN_URL) \
-	  $(WINPCAP_URL)
+	$(SYSROOT_URL) \
+	$(NMC_UTILS_URL) \
+	$(FIRMWARE7707_URL) \
+	$(ARM_TOOLCHAIN_URL) 
 	  
   ARC_URLS = \
-      $(TAR_URL) \
-      $(TARDEP_URL) \
-      $(ZIP7_URL) 
+	$(TAR_BIN_URL) \
+	$(TAR_DEP_URL) \
+	$(ZIP7_URL) 
       
 else
   SDK_MC5103_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01.tar.gz
@@ -98,10 +95,10 @@ else
   NM_IO_URL      = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
   
   NMC_URLS = \
-	  $(SDK_MC5103_URL) \
-	  $(SDK_MB7707_URL) \
-	  $(NMSDK_URL)      \
-	  $(NM_IO_URL)      
+	$(SDK_MC5103_URL) \
+	$(SDK_MB7707_URL) \
+	$(NMSDK_URL)      \
+	$(NM_IO_URL)      
 	
 endif
 	
@@ -143,10 +140,10 @@ $(PACKAGES_ARM):
 	$(OS_WGET) $(ARM_URLS)
 
 #.....................................................
-get-gnu: 	$(PACKAGES_GNU) $(PACKAGES_ARC)
+get-gnu: 	$(PACKAGES_GNU)
 
 $(PACKAGES_GNU): 
-	$(OS_WGET) $(GNU_URLS) $(ARC_URLS)
+	$(OS_WGET) $(GNU_URLS)
 	-ren master.zip cecho.zip	
 
 #.....................................................
@@ -182,19 +179,19 @@ nm_io: $(notdir $(NM_IO_URL))
 nmcalculator: $(notdir $(NMCALC_URL))
 	$(OS_UNPACK) $(<)
 	
-gnuwin32/bin/.gnu_installed: $(notdir $(COREUTILS_URL)) putty.zip $(notdir $(DIFFUTILS_URL)) 
+gnuwin32/bin/.gnu_installed: $(PACKAGES_GNU) putty.zip 
 	-mkdir gnuwin32
 	-mkdir gnuwin32\bin
-	$(OS_UNPACK) $(notdir $(WGETBIN_URL))   $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(WGETDEP_URL))   $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(COREUTILS_URL)) $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(COREDEPS_URL))  $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(WGET_BIN_URL))   $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(WGET_DEP_URL))   $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(COREUTILS_BIN_URL)) $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(COREUTILS_DEP_URL))  $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(FIND_URL))      $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(GREPBIN_URL))   $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(GREPDEP_URL))   $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(BCBIN_URL))     $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(BCDEP_URL))     $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(DIFFUTILS_URL)) $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(GREP_BIN_URL))   $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(GREP_DEP_URL))   $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(BC_BIN_URL))     $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(BC_DEP_URL))     $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(DIFFUTILS_BIN_URL)) $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(PUTTY_URL))     $(OS_TODIR) gnuwin32\bin
 	$(OS_UNPACK) cecho.zip                  $(OS_TODIR) gnuwin32
 	-copy .\gnuwin32\cecho-master\cecho\bin\Release\cecho.exe .\gnuwin32\bin /Y
@@ -204,8 +201,8 @@ gnuwin32/bin/.arc_installed: $(PACKAGES_ARC)
 	-mkdir gnuwin32
 	-mkdir gnuwin32\bin
 	$(OS_UNPACK) $(notdir $(ZIP7_URL))   $(OS_TODIR) gnuwin32\bin
-	$(OS_UNPACK) $(notdir $(TAR_URL))  	 $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(TARDEP_URL)) $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(TAR_BIN_URL))  	 $(OS_TODIR) gnuwin32
+	$(OS_UNPACK) $(notdir $(TAR_DEP_URL)) $(OS_TODIR) gnuwin32
 	@echo "tar & 7z has been installed" > $(@)
 
 gnumake: make-3.81-bin.zip make-3.81-dep.zip 
@@ -254,13 +251,13 @@ clean:
 #a: 
 #	powershell  -ExecutionPolicy Bypass -file wget2.ps1	https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
 #
-t:
-	wget --no-check-certificate https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip 
-
-t2:
-	wget --no-check-certificate http://www.7-zip.org/a/7za920.zip 
-	
-	
+#t:
+#	wget --no-check-certificate https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip 
+#
+#t2:
+#	wget --no-check-certificate http://www.7-zip.org/a/7za920.zip 
+#	
+#	
 #test:	
 #	powershell  -ExecutionPolicy Bypass -file test.ps1
 #  http://www.7-zip.org/a/7za920.zip	
