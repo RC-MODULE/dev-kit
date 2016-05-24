@@ -189,8 +189,6 @@ gnuwin32/bin/.gnu_installed: $(PACKAGES_GNU) putty.zip
 	$(OS_UNPACK) $(notdir $(FIND_URL))      $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(GREP_BIN_URL))   $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(GREP_DEP_URL))   $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(BC_BIN_URL))     $(OS_TODIR) gnuwin32
-	$(OS_UNPACK) $(notdir $(BC_DEP_URL))     $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(DIFFUTILS_BIN_URL)) $(OS_TODIR) gnuwin32
 	$(OS_UNPACK) $(notdir $(PUTTY_URL))     $(OS_TODIR) gnuwin32\bin
 	$(OS_UNPACK) cecho.zip                  $(OS_TODIR) gnuwin32
