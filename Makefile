@@ -194,7 +194,7 @@ nmcalculator: $(notdir $(NMCALC_URL)) $(7ZIP)
 $(notdir $(NMCALC_URL)):
 	$(OS_WGET) $(NMCALC_URL)
 	
-edcltool-win32: $(notdir $(EDCLTOOL_URL)) $(GNUWIN32) $(7ZIP)
+edcltool-win32: $(notdir $(EDCLTOOL_URL)) $(7ZIP) $(TAR)
 	7za x $(<) -y
 	tar -vxf edcltool-20042015-win32.tar
 
@@ -218,20 +218,22 @@ install-gnu:  $(GNUWIN32)
 
 download-gnu: $(WGET) $(PACKAGES_GNU) cecho-master.zip
 	
-$(GNUWIN32):  $(PACKAGES_GNU) gnumake cecho-master.zip 
+$(GNUWIN32): $(TAR) $(PACKAGES_GNU) gnumake cecho-master.zip  
 	7za x $(notdir $(COREUTILS_BIN_URL)) -y -ognuwin32 
 	7za x $(notdir $(COREUTILS_DEP_URL)) -y -ognuwin32
 	7za x $(notdir $(FIND_URL))          -y -ognuwin32
 	7za x $(notdir $(GREP_BIN_URL))      -y -ognuwin32
 	7za x $(notdir $(GREP_DEP_URL))   	 -y -ognuwin32
-	7za x $(notdir $(TAR_BIN_URL))       -y -ognuwin32
-	7za x $(notdir $(TAR_DEP_URL))   	 -y -ognuwin32
 	7za x $(notdir $(DIFFUTILS_BIN_URL)) -y -ognuwin32
 	7za x $(notdir $(PUTTY_URL))         -y -ognuwin32\bin
 	7za e cecho-master.zip cecho-master\cecho\bin\Release\cecho.exe  -y -ognuwin32\bin
 	@echo GNU utils have been installed >> $(@)
 
-
+$(TAR): 
+	$(OS_WGET) $(TAR_BIN_URL) $(TAR_DEP_URL)
+	7za x $(notdir $(TAR_BIN_URL))       -y -ognuwin32
+	7za x $(notdir $(TAR_DEP_URL))   	 -y -ognuwin32
+	
 cecho-master.zip: 
 	$(OS_WGET) $(CECHO_URL)
 
