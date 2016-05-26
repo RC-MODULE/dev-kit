@@ -140,7 +140,7 @@ $(7ZIP) $(WGET):
 
 ####################### nmc support ######################################		
 
-install-nmc:  $(7ZIP) nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-master winpcap
+install-nmc:  $(7ZIP) nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
 	
 download-nmc: $(WGET) $(PACKAGES_NMC)
 	
