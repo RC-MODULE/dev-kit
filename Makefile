@@ -18,7 +18,7 @@
 -include proxy.mk
 #define proxy setting if required in proxy.mk like:
 #export  https_proxy=http://login:pass@proxyserver:port
-#export  https_proxy=http://login:pass@proxyserver:port
+#export  http_proxy =http://login:pass@proxyserver:port
 
 SHELL    = cmd
 OS_RM    = del /Q
