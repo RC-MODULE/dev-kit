@@ -1,6 +1,5 @@
 
 #NMPP      = $(ROOT)
-#http_proxy        = http://user:pass@proxy:80/       (for wget usage)
 
 NEURO     ?= $(realpath ./nmsdk)
 GNUWIN32   = $(realpath ./gnuwin32/bin)
@@ -41,10 +40,11 @@ ifeq ($(OS),Windows_NT)
   OS_RD    = rd /Q /S 
   OS_CP    = $(call BACKSLASH,$(GNUWIN32)/cp)
   OS_WHICH =$(windir)/system32/where
-# OS_WGET  = wget
-  OS_WGET  = powershell  -ExecutionPolicy Bypass -file wget.ps1 
+  OS_WGET  = wget -nc --no-check-certificate --content-disposition 
+# OS_WGET  = powershell  -ExecutionPolicy Bypass -file wget.ps1 
 # OS_UNZIP = unzip 
-  OS_UNZIP = powershell  -ExecutionPolicy Bypass -file unzip.ps1 
+  OS_UNZIP = 7za
+# OS_UNZIP = powershell  -ExecutionPolicy Bypass -file unzip.ps1 
   OS_TODIR = -d
   OS_UNPACK= $(OS_UNZIP)
   PATH_DEP = $(GNUWIN32);\
