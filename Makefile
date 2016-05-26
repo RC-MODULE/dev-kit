@@ -191,6 +191,11 @@ edcltool-win32: $(notdir $(EDCLTOOL_URL)) $(GNUWIN32) $(7ZIP)
 	tar -vxf edcltool-20042015-win32.tar
 
 winpcap: $(notdir $(WINPCAP_URL))
+	@echo *******************************************
+	@echo ** Install WinPcap manualy.              **
+	@echo *******************************************
+	
+$(notdir $(WINPCAP_URL)):
 	$(OS_WGET) $(WINPCAP_URL)
 	
 $(notdir $(EDCLTOOL_URL)): 
