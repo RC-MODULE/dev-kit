@@ -25,8 +25,11 @@ OS_RM    = del /Q
 OS_RD    = rd /Q /S 
 OS_WGET  = wget -nc --no-check-certificate --content-disposition 
 OS_UNZIP = unzip -u -o -q 
+OS_GZIP  = gzip -d -f -k -v
+OS_TAR   = tar -xf
 
-#export PATH := $(realpath ./gnuwin32/bin);$(PATH);
+export NEURO = $(realpath ./nmsdk)
+export PATH := $(NEURO)/bin;$(PATH);
 
 
 ## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
@@ -199,8 +202,8 @@ $(notdir $(NMCALC_URL)):
 	$(OS_WGET) $(NMCALC_URL)
 	
 edcltool-win32: $(notdir $(EDCLTOOL_URL)) $(7ZIP) $(TAR)
-	7za x $(<) -y
-	tar -vxf edcltool-20042015-win32.tar
+	$(OS_GZIP) $(<) 
+	$(OS_TAR) edcltool-20042015-win32.tar
 
 winpcap: $(notdir $(WINPCAP_URL))
 	@echo *******************************************
@@ -260,8 +263,8 @@ rootfs: rootfs/.installed
 
 rootfs/.installed: $(notdir $(SYSROOT_URL)) $(7ZIP) $(GNUWIN32)
 	-mkdir rootfs
-	7za e $(notdir $(SYSROOT_URL)) -y
-	tar -vxf armhf-sdk-sysroot.tar -C rootfs
+	$(OS_GZIP) $(notdir $(SYSROOT_URL))
+	$(OS_TAR)  armhf-sdk-sysroot.tar -C rootfs
 	@echo rootfs has been installed > $(@)
 	
 $(notdir $(SYSROOT_URL)): $(WGET)
@@ -287,8 +290,8 @@ $(notdir $(ARM_TOOLCHAIN_URL)): $(WGET)
 raspbian-jessie-matlab: raspbian-jessie-matlab/.installed
 
 raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL)) $(7ZIP) $(GNUWIN32)
-	7za e $(<)	-y
-	tar -vxf raspbian-jessie-matlab.tar
+	$(OS_GZIP) $(<)
+	$(OS_TAR)  raspbian-jessie-matlab.tar
 	@echo raspbian-jessie-matlab has been installed > $(@)
 
 $(notdir $(FIRMWARE7707_URL)): $(WGET)  
@@ -307,7 +310,7 @@ $(notdir $(LUA_URL)):
 
 clean:
 	-$(OS_RM) *.zip *.exe *.tgz *.tar *.gz
-	-$(OS_RD) mb7707sdk mc5103sdk mc7601sdk nmsdk vshell32 gnuwin32 nm_io gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32
+	-$(OS_RD) mb7707sdk mc5103sdk mc7601sdk nmsdk vshell32 gnuwin32 nm_io gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32 lua
 
 clean-nmc:
 	-$(OS_RM) $(PACKAGES_NMC)  winpcap
