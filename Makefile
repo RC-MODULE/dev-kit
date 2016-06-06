@@ -268,7 +268,7 @@ $(notdir $(SYSROOT_URL)): $(WGET)
 	$(OS_WGET) $(SYSROOT_URL)
 	
 nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk $(7ZIP)
-	$(OS_UNZIP) $(<) -y
+	$(OS_UNZIP) $(<) 
 	$(MAKE) -C nmc-utils-0.1.1/libeasynmc-nmc
 
 nmc-utils-0.1.1.zip: $(WGET) 
