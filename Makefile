@@ -24,7 +24,9 @@ SHELL    = cmd
 OS_RM    = del /Q
 OS_RD    = rd /Q /S 
 OS_WGET  = wget -nc --no-check-certificate --content-disposition 
-export PATH := $(realpath ./gnuwin32/bin);$(PATH);
+OS_UNZIP = unzip -u -o -q 
+
+#export PATH := $(realpath ./gnuwin32/bin);$(PATH);
 
 
 ## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
@@ -46,23 +48,23 @@ export PATH := $(realpath ./gnuwin32/bin);$(PATH);
   ARM_TOOLCHAIN_URL  = http://sysprogs.com/files/gnutoolchains/raspberry/raspberry-gcc4.9.2-r2.exe
  
 ## UTILITIES:
-  COREUTILS_BIN_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-bin.zip
-  COREUTILS_DEP_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-dep.zip
-  DIFFUTILS_BIN_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-bin.zip
-  DIFFUTILS_DEP_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-dep.zip
-  FIND_URL           = https://sourceforge.net/projects/gnuwin32/files/findutils/4.2.20-2/findutils-4.2.20-2-bin.zip
-  GREP_BIN_URL       = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-bin.zip
-  GREP_DEP_URL       = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-dep.zip
-  PUTTY_URL          = http://tartarus.org/~simon/putty-snapshots/x86/putty.zip
-  GNUMAKE_BIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-bin.zip 
-  GNUMAKE_DEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-dep.zip
-  WGET_BIN_URL       = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-bin.zip
-  WGET_DEP_URL       = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-dep.zip
-  TAR_BIN_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-bin.zip
-  TAR_DEP_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-dep.zip
-  CECHO_URL 	     = https://github.com/elisherer/cecho/archive/master.zip
-  
-  ZIP7_URL           = http://www.7-zip.org/a/7za920.zip
+# COREUTILS_BIN_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-bin.zip
+# COREUTILS_DEP_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-dep.zip
+# DIFFUTILS_BIN_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-bin.zip
+# DIFFUTILS_DEP_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-dep.zip
+# FIND_URL           = https://sourceforge.net/projects/gnuwin32/files/findutils/4.2.20-2/findutils-4.2.20-2-bin.zip
+# GREP_BIN_URL       = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-bin.zip
+# GREP_DEP_URL       = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-dep.zip
+# PUTTY_URL          = http://tartarus.org/~simon/putty-snapshots/x86/putty.zip
+# GNUMAKE_BIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-bin.zip 
+# GNUMAKE_DEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-dep.zip
+# WGET_BIN_URL       = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-bin.zip
+# WGET_DEP_URL       = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-dep.zip
+# TAR_BIN_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-bin.zip
+# TAR_DEP_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-dep.zip
+# CECHO_URL 	     = https://github.com/elisherer/cecho/archive/master.zip
+# 
+# ZIP7_URL           = http://www.7-zip.org/a/7za920.zip
 
   
 ## SCRIPTS:
@@ -92,20 +94,20 @@ NMC_URLS = \
 	$(WINPCAP_URL)
 	
 	  
-GNU_URLS =\
-	$(COREUTILS_BIN_URL)	 \
-	$(COREUTILS_DEP_URL)	 \
-	$(DIFFUTILS_BIN_URL) \
-	$(FIND_URL)       \
-	$(PUTTY_URL)	  \
-	$(GNUMAKE_BIN_URL) \
-	$(GNUMAKE_DEP_URL) \
-	$(GREP_BIN_URL) \
-	$(GREP_DEP_URL) \
-	$(TAR_BIN_URL) \
-	$(TAR_DEP_URL) \
-	$(WGET_BIN_URL) \
-	$(WGET_DEP_URL) 
+#GNU_URLS =\
+#	$(COREUTILS_BIN_URL)	 \
+#	$(COREUTILS_DEP_URL)	 \
+#	$(DIFFUTILS_BIN_URL) \
+#	$(FIND_URL)       \
+#	$(PUTTY_URL)	  \
+#	$(GNUMAKE_BIN_URL) \
+#	$(GNUMAKE_DEP_URL) \
+#	$(GREP_BIN_URL) \
+#	$(GREP_DEP_URL) \
+#	$(TAR_BIN_URL) \
+#	$(TAR_DEP_URL) \
+#	$(WGET_BIN_URL) \
+#	$(WGET_DEP_URL) 
 
 #   $(CECHO_URL) 	 separate url because of master.zip
 
@@ -113,34 +115,36 @@ GNU_URLS =\
 	
 
 
-
-install:  install-nmc install-gnu install-arm
-download: download-nmc  download-gnu download-arm
+#install-gnu
+install:  install-nmc  install-arm
+download: download-nmc   download-arm
+#download-gnu
 
 ####################### 7zip & wget installation ######################################	
 
-$(eval OUT=$(shell  wget ))
-ifneq ($(OUT),)
-FIRST_WGET:= wget -nc --no-check-certificate --content-disposition 
-else 
-FIRST_WGET:= powershell  -ExecutionPolicy Bypass -file wget.ps1
-endif
+#$(eval OUT=$(shell  wget ))
+#ifneq ($(OUT),)
+#FIRST_WGET:= wget -nc --no-check-certificate --content-disposition 
+#else 
+#FIRST_WGET:= powershell  -ExecutionPolicy Bypass -file wget.ps1
+#endif
+#
+#
+#7ZIP = gnuwin32/bin/7za.exe
+#WGET = gnuwin32/bin/wget.exe
+#TAR  = gnuwin32/bin/tar.exe
+#GNUWIN32 = gnuwin32/bin/.gnu_installed  
 
 
-7ZIP = gnuwin32/bin/7za.exe
-WGET = gnuwin32/bin/wget.exe
-TAR  = gnuwin32/bin/tar.exe
-GNUWIN32 = gnuwin32/bin/.gnu_installed  
+#install-7zip-wget: $(WGET)
 
-install-7zip-wget: $(WGET)
-
-$(7ZIP) $(WGET): 
-	-@mkdir gnuwin32
-	-@mkdir gnuwin32\bin
-	$(FIRST_WGET)  $(ZIP7_URL) $(WGET_BIN_URL) $(WGET_DEP_URL) 
-	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(WGET_BIN_URL)) -d gnuwin32
-	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(WGET_DEP_URL)) -d gnuwin32
-	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(ZIP7_URL))     -d gnuwin32\bin
+#$(7ZIP) $(WGET): 
+#	-@mkdir gnuwin32
+#	-@mkdir gnuwin32\bin
+#	$(FIRST_WGET)  $(ZIP7_URL) $(WGET_BIN_URL) $(WGET_DEP_URL) 
+#	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(WGET_BIN_URL)) -d gnuwin32
+#	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(WGET_DEP_URL)) -d gnuwin32
+#	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(ZIP7_URL))     -d gnuwin32\bin
 
 ####################### nmc support ######################################		
 PACKAGES_NMC = $(notdir $(NMC_URLS)) 
@@ -151,31 +155,31 @@ install-nmc:  $(7ZIP) nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalcu
 download-nmc: $(WGET) $(PACKAGES_NMC)
 	
 mc5103sdk: $(notdir $(SDK_MC5103_URL)) $(7ZIP)
-	7za x $(<) -y -o$(@)
+	$(OS_UNZIP) $(<) -d $(@)
 
 $(notdir $(SDK_MC5103_URL)):
 	$(OS_WGET) $(SDK_MC5103_URL)
 	
 mb7707sdk: $(notdir $(SDK_MB7707_URL)) $(7ZIP)
-	7za x $(<) -y -o$(@) 
+	$(OS_UNZIP) $(<) -d $(@) 
 
 $(notdir $(SDK_MB7707_URL)): $(WGET)
 	$(OS_WGET) $(SDK_MB7707_URL)
 	
 mc7601sdk: $(notdir $(SDK_MC7601_URL)) $(7ZIP)
-	7za x $(<) -y -o$(@) 
+	$(OS_UNZIP) $(<) -d $(@) 
 
 $(notdir $(SDK_MC7601_URL)):
 	$(OS_WGET) $(SDK_MC7601_URL)
 	
 nmsdk: $(notdir $(NMSDK_URL)) $(7ZIP)
-	7za x $(<) -y -o$(@)
+	$(OS_UNZIP) $(<) -d $(@)
 
 $(notdir $(NMSDK_URL)):
 	$(OS_WGET) $(NMSDK_URL)
 	
 vshell32: $(notdir $(VSHELL32_URL)) $(7ZIP)
-	7za x $(<) -y
+	$(OS_UNZIP) $(<) 
 	
 $(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
 	$(OS_WGET) $(VSHELL32_URL)
@@ -183,13 +187,13 @@ $(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
 	
 
 nm_io: $(notdir $(NM_IO_URL)) $(7ZIP)
-	7za x $(<) -y
+	$(OS_UNZIP) $(<) 
 
 $(notdir $(NM_IO_URL)):
 	$(OS_WGET) $(NM_IO_URL)
 	
 nmcalculator: $(notdir $(NMCALC_URL)) $(7ZIP)
-	7za x $(<) -y
+	$(OS_UNZIP) $(<) 
 	
 $(notdir $(NMCALC_URL)):
 	$(OS_WGET) $(NMCALC_URL)
@@ -212,38 +216,38 @@ $(notdir $(EDCLTOOL_URL)):
 
 
 ##################### gnuwin32 #########################################################
-PACKAGES_GNU = $(notdir $(GNU_URLS))
-
-install-gnu:  $(GNUWIN32)
-
-download-gnu: $(WGET) $(PACKAGES_GNU) cecho-master.zip
-	
-$(GNUWIN32): $(TAR) $(PACKAGES_GNU) gnumake cecho-master.zip  
-	7za x $(notdir $(COREUTILS_BIN_URL)) -y -ognuwin32 
-	7za x $(notdir $(COREUTILS_DEP_URL)) -y -ognuwin32
-	7za x $(notdir $(FIND_URL))          -y -ognuwin32
-	7za x $(notdir $(GREP_BIN_URL))      -y -ognuwin32
-	7za x $(notdir $(GREP_DEP_URL))   	 -y -ognuwin32
-	7za x $(notdir $(DIFFUTILS_BIN_URL)) -y -ognuwin32
-	7za x $(notdir $(PUTTY_URL))         -y -ognuwin32\bin
-	7za e cecho-master.zip cecho-master\cecho\bin\Release\cecho.exe  -y -ognuwin32\bin
-	@echo GNU utils have been installed >> $(@)
-
-$(TAR): 
-	$(OS_WGET) $(TAR_BIN_URL) $(TAR_DEP_URL)
-	7za x $(notdir $(TAR_BIN_URL))       -y -ognuwin32
-	7za x $(notdir $(TAR_DEP_URL))   	 -y -ognuwin32
-	
-cecho-master.zip: 
-	$(OS_WGET) $(CECHO_URL)
-
-gnumake:  $(7ZIP) $(notdir $(GNUMAKE_BIN_URL))  $(notdir $(GNUMAKE_DEP_URL)) 
-	7za x $(notdir $(GNUMAKE_BIN_URL)) -y -ognumake
-	7za x $(notdir $(GNUMAKE_DEP_URL)) -y -ognumake
-
-$(PACKAGES_GNU): 
-	$(OS_WGET) $(GNU_URLS)
-	
+#PACKAGES_GNU = $(notdir $(GNU_URLS))
+#
+#install-gnu:  $(GNUWIN32)
+#
+#download-gnu: $(WGET) $(PACKAGES_GNU) cecho-master.zip
+#	
+#$(GNUWIN32): $(TAR) $(PACKAGES_GNU) gnumake cecho-master.zip  
+#	$(OS_UNZIP) $(notdir $(COREUTILS_BIN_URL)) -d gnuwin32 
+#	$(OS_UNZIP) $(notdir $(COREUTILS_DEP_URL)) -d gnuwin32
+#	$(OS_UNZIP) $(notdir $(FIND_URL))          -d gnuwin32
+#	$(OS_UNZIP) $(notdir $(GREP_BIN_URL))      -d gnuwin32
+#	$(OS_UNZIP) $(notdir $(GREP_DEP_URL))   	 -d gnuwin32
+#	$(OS_UNZIP) $(notdir $(DIFFUTILS_BIN_URL)) -d gnuwin32
+#	$(OS_UNZIP) $(notdir $(PUTTY_URL))         -d gnuwin32\bin
+#	7za e cecho-master.zip cecho-master\cecho\bin\Release\cecho.exe  -d gnuwin32\bin
+#	@echo GNU utils have been installed >> $(@)
+#
+#$(TAR): 
+#	$(OS_WGET) $(TAR_BIN_URL) $(TAR_DEP_URL)
+#	$(OS_UNZIP) $(notdir $(TAR_BIN_URL))       -d gnuwin32
+#	$(OS_UNZIP) $(notdir $(TAR_DEP_URL))   	 -d gnuwin32
+#	
+#cecho-master.zip: 
+#	$(OS_WGET) $(CECHO_URL)
+#
+#gnumake:  $(7ZIP) $(notdir $(GNUMAKE_BIN_URL))  $(notdir $(GNUMAKE_DEP_URL)) 
+#	$(OS_UNZIP) $(notdir $(GNUMAKE_BIN_URL)) -d gnumake
+#	$(OS_UNZIP) $(notdir $(GNUMAKE_DEP_URL)) -d gnumake
+#
+#$(PACKAGES_GNU): 
+#	$(OS_WGET) $(GNU_URLS)
+#	
 	
 ################## ARM NMC support ############################################################	
 PACKAGES_ARM = $(notdir $(SYSROOT_URL)  $(FIRMWARE7707_URL) $(ARM_TOOLCHAIN_URL)) nmc-utils-0.1.1.zip	
@@ -264,7 +268,7 @@ $(notdir $(SYSROOT_URL)): $(WGET)
 	$(OS_WGET) $(SYSROOT_URL)
 	
 nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk $(7ZIP)
-	7za x $(<) -y
+	$(OS_UNZIP) $(<) -y
 	$(MAKE) -C nmc-utils-0.1.1/libeasynmc-nmc
 
 nmc-utils-0.1.1.zip: $(WGET) 
@@ -289,14 +293,21 @@ raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL)) $(7ZIP) $(GNUWI
 
 $(notdir $(FIRMWARE7707_URL)): $(WGET)  
 	$(OS_WGET) $(FIRMWARE7707_URL)
+	
+############################################
 
+lua: $(notdir $(LUA_URL))
+	$(OS_UNZIP) $(<) -d lua
+		
+$(notdir $(LUA_URL)): 
+	$(OS_WGET) $(LUA_URL) 
  	
 
 #################### cleanup ##################################################################################
 
 clean:
 	-$(OS_RM) *.zip *.exe *.tgz *.tar *.gz
-	-$(OS_RD) mb7707sdk mc5103sdk mc7601sdk nmsdk vshell32 gnuwin32 nm_io gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator
+	-$(OS_RD) mb7707sdk mc5103sdk mc7601sdk nmsdk vshell32 gnuwin32 nm_io gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32
 
 clean-nmc:
 	-$(OS_RM) $(PACKAGES_NMC)  winpcap
