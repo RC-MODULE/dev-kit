@@ -41,9 +41,9 @@
 
 4.Уставить необходимые пакеты:    
 ```bat
-   make install-nmc (установить только nmc инструменты)  
-   make install-arm (установить только arm инструменты)  
-   make install     (установить arm + nmc инструменты)  
+С:\dev-pack-master> make install-nmc (установить только nmc инструменты)  
+С:\dev-pack-master> make install-arm (установить только arm инструменты)  
+С:\dev-pack-master> make install     (установить arm + nmc инструменты)  
 ```   
 
 5.Установить переменную окружения DEVPACK (для текущего пользователя)
