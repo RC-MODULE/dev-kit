@@ -26,9 +26,9 @@
   
 
 # Установка 
-1.Скачать данный проект или архив https://github.com/RC-MODULE/dev-pack/archive/master.zip
-2.Распаковать перейти в dev-pack 
-3.скачать необходимые пакеты:  
+1.Скачать данный проект или архив https://github.com/RC-MODULE/dev-pack/archive/master.zip  
+2.Распаковать перейти в dev-pack   
+3.скачать необходимые пакеты:   
 ```bat
    make download-nmc (скачать только nmc инструменты)  
    make download-arm (скачать только arm инструменты)  
