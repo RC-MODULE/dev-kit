@@ -28,11 +28,15 @@
 # Установка 
 1.Скачать данный проект или архив https://github.com/RC-MODULE/dev-pack/archive/master.zip  
 2.Распаковать перейти в dev-pack   
-3.скачать необходимые пакеты:   
+3.скачать необходимые пакеты:   (установить переменные http_proxy и https_proxy если используется прокси)
+
 ```bat
-   make download-nmc (скачать только nmc инструменты)  
-   make download-arm (скачать только arm инструменты)  
-   make download  (скачать arm + nmc инструменты)  
+С:\dev-pack-master> set  http_proxy=http://username:password@proxy:80/
+С:\dev-pack-master> set https_proxy=http://username:password@proxy:80/
+
+С:\dev-pack-master> make download-nmc (скачать только nmc инструменты)  
+С:\dev-pack-master> make download-arm (скачать только arm инструменты)  
+С:\dev-pack-master> make download  (скачать arm + nmc инструменты)  
 ```   
 
 4.Уставить необходимые пакеты:    
