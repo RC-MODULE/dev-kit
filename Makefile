@@ -48,7 +48,11 @@ export PATH := $(NEURO)/bin;$(PATH);
   NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
   SYSROOT_URL        = http://www.module.ru/mb7707/random/matlab-dev/armhf-sdk-sysroot.tgz
   FIRMWARE7707_URL   = http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
-  ARM_TOOLCHAIN_URL  = http://sysprogs.com/files/gnutoolchains/raspberry/raspberry-gcc4.9.2-r2.exe
+  FIRMWARE7707_TAR   = $(notdir $(basename $(FIRMWARE7707_URL)))
+  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
+  ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
+
+# ARM_TOOLCHAIN_URL  = http://sysprogs.com/files/gnutoolchains/raspberry/raspberry-gcc4.9.2-r2.exe
  
 ## UTILITIES:
 # COREUTILS_BIN_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-bin.zip
@@ -278,11 +282,14 @@ nmc-utils-0.1.1.zip: $(WGET)
 	$(OS_WGET) $(NMC_UTILS_URL)
 	
 arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL))
-	@echo ************************************************************************************************
-	@echo ** Install raspberry-gcc4.9.2-r2.exe manualy. It is recommended to install it to default path **
-	@echo ** It is strongly recommended to delete make.exe from Raspberry/bin folder because of its     **
-	@echo ** mulfuction in 3.82 version. Use 3.81 version to process Makefiles     instead              **
-	@echo ************************************************************************************************
+	$(OS_GZIP) $(<)
+	$(OS_TAR) $(ARM_TOOLCHAIN_TAR) 
+	
+#	@echo ************************************************************************************************
+#	@echo ** Install raspberry-gcc4.9.2-r2.exe manualy. It is recommended to install it to default path **
+#	@echo ** It is strongly recommended to delete make.exe from Raspberry/bin folder because of its     **
+#	@echo ** mulfuction in 3.82 version. Use 3.81 version to process Makefiles     instead              **
+#	@echo ************************************************************************************************
 
 $(notdir $(ARM_TOOLCHAIN_URL)): $(WGET) 
 	$(OS_WGET) $(ARM_TOOLCHAIN_URL)
