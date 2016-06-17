@@ -47,6 +47,7 @@ export PATH := $(NEURO)/bin;$(PATH);
   EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
   NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
   SYSROOT_URL        = http://www.module.ru/mb7707/random/matlab-dev/armhf-sdk-sysroot.tgz
+  SYSROOT_TAR		 = $(notdir $(basename $(SYSROOT_URL))).tar
   FIRMWARE7707_URL   = http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
   FIRMWARE7707_TAR   = $(notdir $(basename $(FIRMWARE7707_URL)))
   ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
@@ -281,9 +282,12 @@ nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk $(7ZIP)
 nmc-utils-0.1.1.zip: $(WGET) 
 	$(OS_WGET) $(NMC_UTILS_URL)
 	
-arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL))
+arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) $(notdir $(SYSROOT_URL))
 	$(OS_GZIP) $(<)
 	$(OS_TAR) $(ARM_TOOLCHAIN_TAR) 
+	$(OS_GZIP) $(notdir $(SYSROOT_URL))
+	mkdir .\i686-w64-mingw32\arm-linux-gnueabihf\libc
+	$(OS_TAR)  $(SYSROOT_TAR) -C .\i686-w64-mingw32\arm-linux-gnueabihf\libc
 	
 #	@echo ************************************************************************************************
 #	@echo ** Install raspberry-gcc4.9.2-r2.exe manualy. It is recommended to install it to default path **
@@ -311,8 +315,16 @@ lua: $(notdir $(LUA_URL))
 		
 $(notdir $(LUA_URL)): 
 	$(OS_WGET) $(LUA_URL) 
- 	
 
+set-neuro: 	
+	setx NEURO $(realpath .)/nmsdk
+
+set-devpack: 	
+	setx DEVPACK $(realpath .)
+
+path-nmsdk:
+	expr length %path%
+	
 #################### cleanup ##################################################################################
 
 clean:
