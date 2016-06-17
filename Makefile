@@ -31,7 +31,6 @@ OS_TAR   = tar -xf
 export NEURO = $(realpath ./nmsdk)
 export PATH := $(NEURO)/bin;$(PATH);
 
-
 ## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
   NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
   VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
@@ -53,28 +52,6 @@ export PATH := $(NEURO)/bin;$(PATH);
   ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
   ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
 
-# ARM_TOOLCHAIN_URL  = http://sysprogs.com/files/gnutoolchains/raspberry/raspberry-gcc4.9.2-r2.exe
- 
-## UTILITIES:
-# COREUTILS_BIN_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-bin.zip
-# COREUTILS_DEP_URL	 = http://sourceforge.net/projects/gnuwin32/files/coreutils/5.3.0/coreutils-5.3.0-dep.zip
-# DIFFUTILS_BIN_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-bin.zip
-# DIFFUTILS_DEP_URL  = http://downloads.sourceforge.net/project/gnuwin32/diffutils/2.8.7-1/diffutils-2.8.7-1-dep.zip
-# FIND_URL           = https://sourceforge.net/projects/gnuwin32/files/findutils/4.2.20-2/findutils-4.2.20-2-bin.zip
-# GREP_BIN_URL       = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-bin.zip
-# GREP_DEP_URL       = http://downloads.sourceforge.net/project/gnuwin32/grep/2.5.4/grep-2.5.4-dep.zip
-# PUTTY_URL          = http://tartarus.org/~simon/putty-snapshots/x86/putty.zip
-# GNUMAKE_BIN_URL    = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-bin.zip 
-# GNUMAKE_DEP_URL    = http://downloads.sourceforge.net/project/gnuwin32/make/3.81/make-3.81-dep.zip
-# WGET_BIN_URL       = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-bin.zip
-# WGET_DEP_URL       = http://downloads.sourceforge.net/project/gnuwin32/wget/1.11.4-1/wget-1.11.4-1-dep.zip
-# TAR_BIN_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-bin.zip
-# TAR_DEP_URL        = http://downloads.sourceforge.net/project/gnuwin32/tar/1.13-1/tar-1.13-1-dep.zip
-# CECHO_URL 	     = https://github.com/elisherer/cecho/archive/master.zip
-# 
-# ZIP7_URL           = http://www.7-zip.org/a/7za920.zip
-
-  
 ## SCRIPTS:
   LUA_URL        = http://downloads.sourceforge.net/project/luabinaries/5.2.4/Tools%20Executables/lua-5.2.4_Win32_bin.zip
 
@@ -102,91 +79,43 @@ NMC_URLS = \
 	$(WINPCAP_URL)
 	
 	  
-#GNU_URLS =\
-#	$(COREUTILS_BIN_URL)	 \
-#	$(COREUTILS_DEP_URL)	 \
-#	$(DIFFUTILS_BIN_URL) \
-#	$(FIND_URL)       \
-#	$(PUTTY_URL)	  \
-#	$(GNUMAKE_BIN_URL) \
-#	$(GNUMAKE_DEP_URL) \
-#	$(GREP_BIN_URL) \
-#	$(GREP_DEP_URL) \
-#	$(TAR_BIN_URL) \
-#	$(TAR_DEP_URL) \
-#	$(WGET_BIN_URL) \
-#	$(WGET_DEP_URL) 
 
-#   $(CECHO_URL) 	 separate url because of master.zip
-
-
-	
-
-
-#install-gnu
 install:  install-nmc  install-arm
 download: download-nmc   download-arm
-#download-gnu
-
-####################### 7zip & wget installation ######################################	
-
-#$(eval OUT=$(shell  wget ))
-#ifneq ($(OUT),)
-#FIRST_WGET:= wget -nc --no-check-certificate --content-disposition 
-#else 
-#FIRST_WGET:= powershell  -ExecutionPolicy Bypass -file wget.ps1
-#endif
-#
-#
-#7ZIP = gnuwin32/bin/7za.exe
-#WGET = gnuwin32/bin/wget.exe
-#TAR  = gnuwin32/bin/tar.exe
-#GNUWIN32 = gnuwin32/bin/.gnu_installed  
-
-
-#install-7zip-wget: $(WGET)
-
-#$(7ZIP) $(WGET): 
-#	-@mkdir gnuwin32
-#	-@mkdir gnuwin32\bin
-#	$(FIRST_WGET)  $(ZIP7_URL) $(WGET_BIN_URL) $(WGET_DEP_URL) 
-#	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(WGET_BIN_URL)) -d gnuwin32
-#	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(WGET_DEP_URL)) -d gnuwin32
-#	powershell  -ExecutionPolicy Bypass -file unzip.ps1 $(notdir $(ZIP7_URL))     -d gnuwin32\bin
 
 ####################### nmc support ######################################		
 PACKAGES_NMC = $(notdir $(NMC_URLS)) 
 
 
-install-nmc:  $(7ZIP) nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
+install-nmc:  nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
 	
-download-nmc: $(WGET) $(PACKAGES_NMC)
+download-nmc: $(PACKAGES_NMC)
 	
-mc5103sdk: $(notdir $(SDK_MC5103_URL)) $(7ZIP)
+mc5103sdk: $(notdir $(SDK_MC5103_URL)) 
 	$(OS_UNZIP) $(<) -d $(@)
 
 $(notdir $(SDK_MC5103_URL)):
 	$(OS_WGET) $(SDK_MC5103_URL)
 	
-mb7707sdk: $(notdir $(SDK_MB7707_URL)) $(7ZIP)
+mb7707sdk: $(notdir $(SDK_MB7707_URL)) 
 	$(OS_UNZIP) $(<) -d $(@) 
 
-$(notdir $(SDK_MB7707_URL)): $(WGET)
+$(notdir $(SDK_MB7707_URL)): 
 	$(OS_WGET) $(SDK_MB7707_URL)
 	
-mc7601sdk: $(notdir $(SDK_MC7601_URL)) $(7ZIP)
+mc7601sdk: $(notdir $(SDK_MC7601_URL)) 
 	$(OS_UNZIP) $(<) -d $(@) 
 
 $(notdir $(SDK_MC7601_URL)):
 	$(OS_WGET) $(SDK_MC7601_URL)
 	
-nmsdk: $(notdir $(NMSDK_URL)) $(7ZIP)
+nmsdk: $(notdir $(NMSDK_URL)) 
 	$(OS_UNZIP) $(<) -d $(@)
 
 $(notdir $(NMSDK_URL)):
 	$(OS_WGET) $(NMSDK_URL)
 	
-vshell32: $(notdir $(VSHELL32_URL)) $(7ZIP)
+vshell32: $(notdir $(VSHELL32_URL)) 
 	$(OS_UNZIP) $(<) 
 	
 $(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
@@ -194,19 +123,19 @@ $(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
 	$(OS_WGET) $(VSHELL32_DIST)
 	
 
-nm_io: $(notdir $(NM_IO_URL)) $(7ZIP)
+nm_io: $(notdir $(NM_IO_URL)) 
 	$(OS_UNZIP) $(<) 
 
 $(notdir $(NM_IO_URL)):
 	$(OS_WGET) $(NM_IO_URL)
 	
-nmcalculator: $(notdir $(NMCALC_URL)) $(7ZIP)
+nmcalculator: $(notdir $(NMCALC_URL)) 
 	$(OS_UNZIP) $(<) 
 	
 $(notdir $(NMCALC_URL)):
 	$(OS_WGET) $(NMCALC_URL)
 	
-edcltool-win32: $(notdir $(EDCLTOOL_URL)) $(7ZIP) $(TAR)
+edcltool-win32: $(notdir $(EDCLTOOL_URL))  $(TAR)
 	$(OS_GZIP) $(<) 
 	$(OS_TAR) edcltool-20042015-win32.tar
 
@@ -223,63 +152,18 @@ $(notdir $(EDCLTOOL_URL)):
 
 
 
-##################### gnuwin32 #########################################################
-#PACKAGES_GNU = $(notdir $(GNU_URLS))
-#
-#install-gnu:  $(GNUWIN32)
-#
-#download-gnu: $(WGET) $(PACKAGES_GNU) cecho-master.zip
-#	
-#$(GNUWIN32): $(TAR) $(PACKAGES_GNU) gnumake cecho-master.zip  
-#	$(OS_UNZIP) $(notdir $(COREUTILS_BIN_URL)) -d gnuwin32 
-#	$(OS_UNZIP) $(notdir $(COREUTILS_DEP_URL)) -d gnuwin32
-#	$(OS_UNZIP) $(notdir $(FIND_URL))          -d gnuwin32
-#	$(OS_UNZIP) $(notdir $(GREP_BIN_URL))      -d gnuwin32
-#	$(OS_UNZIP) $(notdir $(GREP_DEP_URL))   	 -d gnuwin32
-#	$(OS_UNZIP) $(notdir $(DIFFUTILS_BIN_URL)) -d gnuwin32
-#	$(OS_UNZIP) $(notdir $(PUTTY_URL))         -d gnuwin32\bin
-#	7za e cecho-master.zip cecho-master\cecho\bin\Release\cecho.exe  -d gnuwin32\bin
-#	@echo GNU utils have been installed >> $(@)
-#
-#$(TAR): 
-#	$(OS_WGET) $(TAR_BIN_URL) $(TAR_DEP_URL)
-#	$(OS_UNZIP) $(notdir $(TAR_BIN_URL))       -d gnuwin32
-#	$(OS_UNZIP) $(notdir $(TAR_DEP_URL))   	 -d gnuwin32
-#	
-#cecho-master.zip: 
-#	$(OS_WGET) $(CECHO_URL)
-#
-#gnumake:  $(7ZIP) $(notdir $(GNUMAKE_BIN_URL))  $(notdir $(GNUMAKE_DEP_URL)) 
-#	$(OS_UNZIP) $(notdir $(GNUMAKE_BIN_URL)) -d gnumake
-#	$(OS_UNZIP) $(notdir $(GNUMAKE_DEP_URL)) -d gnumake
-#
-#$(PACKAGES_GNU): 
-#	$(OS_WGET) $(GNU_URLS)
-#	
-	
 ################## ARM NMC support ############################################################	
 PACKAGES_ARM = $(notdir $(SYSROOT_URL)  $(FIRMWARE7707_URL) $(ARM_TOOLCHAIN_URL)) nmc-utils-0.1.1.zip	
 
-install-arm:  rootfs nmc-utils-0.1.1 raspbian-jessie-matlab arm-toolchain
+install-arm:  nmc-utils-0.1.1 raspbian-jessie-matlab arm-toolchain
 
 download-arm: $(PACKAGES_ARM)
 
-rootfs: rootfs/.installed
-
-rootfs/.installed: $(notdir $(SYSROOT_URL)) $(7ZIP) $(GNUWIN32)
-	-mkdir rootfs
-	$(OS_GZIP) $(notdir $(SYSROOT_URL))
-	$(OS_TAR)  armhf-sdk-sysroot.tar -C rootfs
-	@echo rootfs has been installed > $(@)
-	
-$(notdir $(SYSROOT_URL)): $(WGET)
-	$(OS_WGET) $(SYSROOT_URL)
-	
-nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk $(7ZIP)
+nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk 
 	$(OS_UNZIP) $(<) 
 	$(MAKE) -C nmc-utils-0.1.1/libeasynmc-nmc
 
-nmc-utils-0.1.1.zip: $(WGET) 
+nmc-utils-0.1.1.zip:  
 	$(OS_WGET) $(NMC_UTILS_URL)
 	
 arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) $(notdir $(SYSROOT_URL))
@@ -289,23 +173,17 @@ arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) $(notdir $(SYSROOT_URL))
 	mkdir .\i686-w64-mingw32\arm-linux-gnueabihf\libc
 	$(OS_TAR)  $(SYSROOT_TAR) -C .\i686-w64-mingw32\arm-linux-gnueabihf\libc
 	
-#	@echo ************************************************************************************************
-#	@echo ** Install raspberry-gcc4.9.2-r2.exe manualy. It is recommended to install it to default path **
-#	@echo ** It is strongly recommended to delete make.exe from Raspberry/bin folder because of its     **
-#	@echo ** mulfuction in 3.82 version. Use 3.81 version to process Makefiles     instead              **
-#	@echo ************************************************************************************************
-
-$(notdir $(ARM_TOOLCHAIN_URL)): $(WGET) 
+$(notdir $(ARM_TOOLCHAIN_URL)):  
 	$(OS_WGET) $(ARM_TOOLCHAIN_URL)
 	
 raspbian-jessie-matlab: raspbian-jessie-matlab/.installed
 
-raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL)) $(7ZIP) $(GNUWIN32)
+raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL))  
 	$(OS_GZIP) $(<)
 	$(OS_TAR)  raspbian-jessie-matlab.tar
 	@echo raspbian-jessie-matlab has been installed > $(@)
 
-$(notdir $(FIRMWARE7707_URL)): $(WGET)  
+$(notdir $(FIRMWARE7707_URL)):   
 	$(OS_WGET) $(FIRMWARE7707_URL)
 	
 ############################################
