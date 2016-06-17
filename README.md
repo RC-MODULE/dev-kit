@@ -50,6 +50,7 @@
 ```bat
 С:\dev-pack-master> set-devpack.bat
 ```	
+> Для установки переменной требутся setx утилита. Windows XP не содержит setx. Необходимо установить [Windows Support Tools for Microsoft Windows XP](https://www.microsoft.com/en-us/download/details.aspx?id=18546)
 
 6.Установить  переменную окружения NEURO  (для текущего пользователя)
 ```bat
@@ -57,5 +58,7 @@
 ```	
 
 Добавление необходимых путей (%NEURO%\bin) в переменную PATН осуществляется самостоятельно. 
+
+
 
   
