@@ -176,6 +176,9 @@ arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) $(notdir $(SYSROOT_URL))
 $(notdir $(ARM_TOOLCHAIN_URL)):  
 	$(OS_WGET) $(ARM_TOOLCHAIN_URL)
 	
+$(notdir $(SYSROOT_URL)):  
+	$(OS_WGET) $(SYSROOT_URL)
+	
 raspbian-jessie-matlab: raspbian-jessie-matlab/.installed
 
 raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL))  
