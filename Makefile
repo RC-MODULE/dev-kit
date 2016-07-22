@@ -33,6 +33,7 @@ export PATH := $(NEURO)/bin;$(PATH);
 
 ## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
   NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
+  VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
   VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
   VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
   NMCALC_URL         = http://www.module.ru/mb7707/NeuroMatrix/nmcalculator.zip 
@@ -49,7 +50,9 @@ export PATH := $(NEURO)/bin;$(PATH);
   SYSROOT_TAR		 = $(notdir $(basename $(SYSROOT_URL))).tar
   FIRMWARE7707_URL   = http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
   FIRMWARE7707_TAR   = $(notdir $(basename $(FIRMWARE7707_URL)))
-  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
+  #ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
+  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-27062016.zip
+  
   ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
 
 ## SCRIPTS:
@@ -68,6 +71,7 @@ export PATH := $(NEURO)/bin;$(PATH);
   
 NMC_URLS = \
 	$(NMSDK_URL)      \
+	$(VCREDIST_URL)	  \
 	$(NM_IO_URL)      \
 	$(VSHELL32_URL)   \
 	$(VSHELL32_DIST)  \
@@ -90,6 +94,9 @@ PACKAGES_NMC = $(notdir $(NMC_URLS))
 install-nmc:  nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
 	
 download-nmc: $(PACKAGES_NMC)
+
+$(notdir $(VCREDIST_URL)):
+	$(OS_WGET) $(VCREDIST_URL)
 	
 mc5103sdk: $(notdir $(SDK_MC5103_URL)) 
 	$(OS_UNZIP) $(<) -d $(@)
@@ -183,7 +190,7 @@ raspbian-jessie-matlab: raspbian-jessie-matlab/.installed
 
 raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL))  
 	$(OS_GZIP) $(<)
-	$(OS_TAR)  raspbian-jessie-matlab.tar
+	$(OS_TAR)  $(FIRMWARE7707_TAR)
 	@echo raspbian-jessie-matlab has been installed > $(@)
 
 $(notdir $(FIRMWARE7707_URL)):   
@@ -204,7 +211,17 @@ set-devpack:
 	setx DEVPACK $(realpath .)
 
 path-nmsdk:
-	expr length %path%
+	expr length "%path%;%cd%" >.path.len & cat .path.len & set /p len=<.path.len & if %len% LEQ 11024 (setx ppp $(PATH);$(realpath .)) else echo wt
+
+path:
+	expr length "%path%;%cd%" >.path.len 
+	cat .path.len 
+	setx len /f .path.len /a 0,0
+	echo %len%
+	if 10 leq 1024 	echo ok else echo wtf
+	
+#	(setx ppp %NEURO% %len%) else echo wtf
+	
 	
 #################### cleanup ##################################################################################
 
@@ -222,7 +239,7 @@ clean-gnu:
 
 clean-arm:
 	-$(OS_RM) $(PACKAGES_ARM) 
-	-$(OS_RD) raspbian-jessie-matlab nmc-utils-0.1.1 rootfs
+	-$(OS_RD) raspbian-jessie-matlab nmc-utils-0.1.1 i686-w64-mingw32
 	
 #	cmd /c copy /B gnuwin32\bin\wget.exe+,, gnuwin32\bin\wget.exe
 #	cmd /c copy /B gnuwin32\bin\7za.exe+,, gnuwin32\bin\7za.exe

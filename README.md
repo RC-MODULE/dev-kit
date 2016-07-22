@@ -5,6 +5,7 @@
 
 ##Комплект инструментов для разработки NeuroMatrix приложений:  
 - nmsdk - NeuroMatrix SDK  для процессоров на базе ядра nmc и nmc3 (NM6403,NM6405, NM6406)
+- vcredist_x86.exe - [Microsoft Visual C++ 2005 SP1 Redistributable Package (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=5638) (требуется для работы NMSDK)
 - mb7707sdk  - комплект поддержки вычислительного модуля МВ77.07  
 - mc5103sdk  - комплект поддержки вычислительного модуля МЦ51.03  
 - mc7601sdk  - комплект поддержки вычислительного модуля МЦ76.01  
