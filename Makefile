@@ -205,13 +205,19 @@ $(notdir $(LUA_URL)):
 	$(OS_WGET) $(LUA_URL) 
 
 set-neuro: 	
-	setx NEURO $(realpath .)/nmsdk
+	setenv -a NEURO $(realpath .)/nmsdk
+	
+#	setx NEURO $(realpath .)/nmsdk
 
 set-devpack: 	
-	setx DEVPACK $(realpath .)
+	setenv -a DEVPACK $(realpath .)
+	
+#	setx DEVPACK $(realpath .)
 
 path-nmsdk:
-	expr length "%path%;%cd%" >.path.len & cat .path.len & set /p len=<.path.len & if %len% LEQ 11024 (setx ppp $(PATH);$(realpath .)) else echo wt
+	setenv -a PATH %%NEURO%\bin;
+	
+#	expr length "%path%;%cd%" >.path.len & cat .path.len & set /p len=<.path.len & if %len% LEQ 11024 (setx ppp $(PATH);$(realpath .)) else echo wt
 
 path:
 	expr length "%path%;%cd%" >.path.len 
