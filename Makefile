@@ -51,10 +51,11 @@ export PATH := $(NEURO)/bin;$(PATH);
   SYSROOT_TAR		 = $(notdir $(basename $(SYSROOT_URL))).tar
   FIRMWARE7707_URL   = http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
   FIRMWARE7707_TAR   = $(notdir $(basename $(FIRMWARE7707_URL)))
-  #ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
-  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-27062016.zip
+  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
+  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-27062016.zip
+  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-03082016.zip
   
-  ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
+  #ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
 
 ## SCRIPTS:
   LUA_URL        = http://downloads.sourceforge.net/project/luabinaries/5.2.4/Tools%20Executables/lua-5.2.4_Win32_bin.zip
@@ -174,12 +175,15 @@ nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk
 nmc-utils-0.1.1.zip:  
 	$(OS_WGET) $(NMC_UTILS_URL)
 	
-arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) $(notdir $(SYSROOT_URL))
-	$(OS_GZIP) $(<)
-	$(OS_TAR) $(ARM_TOOLCHAIN_TAR) 
-	$(OS_GZIP) $(notdir $(SYSROOT_URL))
-	mkdir .\i686-w64-mingw32\arm-linux-gnueabihf\libc
-	$(OS_TAR)  $(SYSROOT_TAR) -C .\i686-w64-mingw32\arm-linux-gnueabihf\libc
+arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) 
+	$(OS_UNZIP) $(<) 
+	
+# $(notdir $(SYSROOT_URL))	
+#	$(OS_GZIP) $(<)
+#	$(OS_TAR) $(ARM_TOOLCHAIN_TAR) 
+#	$(OS_GZIP) $(notdir $(SYSROOT_URL))
+#	mkdir .\i686-w64-mingw32\arm-linux-gnueabihf\libc
+#	$(OS_TAR)  $(SYSROOT_TAR) -C .\i686-w64-mingw32\arm-linux-gnueabihf\libc
 	
 $(notdir $(ARM_TOOLCHAIN_URL)):  
 	$(OS_WGET) $(ARM_TOOLCHAIN_URL)
