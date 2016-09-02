@@ -32,8 +32,10 @@ export NEURO = $(realpath ./nmsdk)
 export PATH := $(NEURO)/bin;$(PATH);
 
 ## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
-  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
-  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20160527.zip
+  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
+  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20160527.zip
+  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/module-nmc-20160804.tar.gz
+  #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
   VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
   VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
   VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
@@ -93,7 +95,7 @@ download: download-nmc   download-arm
 PACKAGES_NMC = $(notdir $(NMC_URLS)) 
 
 
-install-nmc:  nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
+install-nmc:  module_nmc nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
 	
 download-nmc: $(PACKAGES_NMC)
 
@@ -101,25 +103,34 @@ $(notdir $(VCREDIST_URL)):
 	$(OS_WGET) $(VCREDIST_URL)
 	
 mc5103sdk: $(notdir $(SDK_MC5103_URL)) 
-	$(OS_UNZIP) $(<) -d $(@)
+	$(OS_UNZIP) $(<) -d module-nmc
 
 $(notdir $(SDK_MC5103_URL)):
 	$(OS_WGET) $(SDK_MC5103_URL)
 	
 mb7707sdk: $(notdir $(SDK_MB7707_URL)) 
-	$(OS_UNZIP) $(<) -d $(@) 
+	$(OS_UNZIP) $(<) -d module-nmc
 
 $(notdir $(SDK_MB7707_URL)): 
 	$(OS_WGET) $(SDK_MB7707_URL)
 	
 mc7601sdk: $(notdir $(SDK_MC7601_URL)) 
-	$(OS_UNZIP) $(<) -d $(@) 
+	$(OS_UNZIP) $(<) -d module-nmc 
 
 $(notdir $(SDK_MC7601_URL)):
 	$(OS_WGET) $(SDK_MC7601_URL)
 	
-nmsdk: $(notdir $(NMSDK_URL)) 
+module_nmc: $(notdir $(NMSDK_URL)) 
 	$(OS_UNZIP) $(<) -d $(@)
+	
+#module_nmc: $(notdir $(NMSDK_URL))  
+#	$(OS_GZIP) $(<)
+#	$(OS_TAR)  $(NMSDK_TAR)
+
+#	@echo raspbian-jessie-matlab has been installed > $(@)
+	
+	
+	
 
 $(notdir $(NMSDK_URL)):
 	$(OS_WGET) $(NMSDK_URL)
@@ -168,7 +179,7 @@ install-arm:  nmc-utils-0.1.1 raspbian-jessie-matlab arm-toolchain
 
 download-arm: $(PACKAGES_ARM)
 
-nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk 
+nmc-utils-0.1.1:  nmc-utils-0.1.1.zip module-nmc 
 	$(OS_UNZIP) $(<) 
 	$(MAKE) -C nmc-utils-0.1.1/libeasynmc-nmc
 
@@ -210,7 +221,7 @@ $(notdir $(LUA_URL)):
 	$(OS_WGET) $(LUA_URL) 
 
 set-neuro: 	
-	setenv -a NEURO $(realpath .)/nmsdk
+	setenv -a NEURO $(realpath .)/module-nmc
 	
 #	setx NEURO $(realpath .)/nmsdk
 
