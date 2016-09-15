@@ -52,10 +52,12 @@ export PATH := $(NEURO)/bin;$(PATH);
   SYSROOT_URL        = http://www.module.ru/mb7707/random/matlab-dev/armhf-sdk-sysroot.tgz
   SYSROOT_TAR		 = $(notdir $(basename $(SYSROOT_URL))).tar
   FIRMWARE7707_URL   = http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
+  
   FIRMWARE7707_TAR   = $(notdir $(basename $(FIRMWARE7707_URL)))
   #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
   #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-27062016.zip
-  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-03082016.zip
+  #ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-03082016.zip
+  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/ci/toolchains/raspbian/windows/arm-rcm-linux-gnueabihf-07092016.zip
   
   #ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
 
