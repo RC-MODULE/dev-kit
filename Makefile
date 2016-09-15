@@ -97,7 +97,7 @@ download: download-nmc   download-arm
 PACKAGES_NMC = $(notdir $(NMC_URLS)) 
 
 
-install-nmc:  module_nmc nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
+install-nmc:  module-nmc nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
 	
 download-nmc: $(PACKAGES_NMC)
 
@@ -122,10 +122,10 @@ mc7601sdk: $(notdir $(SDK_MC7601_URL))
 $(notdir $(SDK_MC7601_URL)):
 	$(OS_WGET) $(SDK_MC7601_URL)
 	
-module_nmc: $(notdir $(NMSDK_URL)) 
+module-nmc: $(notdir $(NMSDK_URL)) 
 	$(OS_UNZIP) $(<) -d $(@)
 	
-#module_nmc: $(notdir $(NMSDK_URL))  
+#module-nmc: $(notdir $(NMSDK_URL))  
 #	$(OS_GZIP) $(<)
 #	$(OS_TAR)  $(NMSDK_TAR)
 
