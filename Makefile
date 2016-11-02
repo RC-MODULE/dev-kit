@@ -32,8 +32,9 @@ export NEURO = $(realpath ./nmsdk)
 export PATH := $(NEURO)/bin;$(PATH);
 
 ## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
-  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
+  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
   #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20160527.zip
+  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20161011.zip
   #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/module-nmc-20160804.tar.gz
   #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
   VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
@@ -44,7 +45,8 @@ export PATH := $(NEURO)/bin;$(PATH);
   # Pure NMC Board support:
   SDK_MC5103_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
   SDK_MC7601_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
-  SDK_MB7707_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_02_x32.zip
+  #SDK_MB7707_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_02_x32.zip
+  SDK_MB7707_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
   WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
   # ARM-NMC MB7707 support :
   EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
