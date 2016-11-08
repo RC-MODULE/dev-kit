@@ -27,34 +27,34 @@
   
 
 # Установка 
-1.Скачать данный проект или архив https://github.com/RC-MODULE/dev-pack/archive/master.zip  
-2.Распаковать и в консольном окне перейти в dev-pack-master  
+1.Скачать данный проект или архив https://github.com/RC-MODULE/dev-kit/archive/master.zip  
+2.Распаковать и в консольном окне перейти в dev-kit-master  
 3.Cкачать необходимые пакеты:   (установить переменные http_proxy и https_proxy если используется прокси-сервер)
 
 ```bat
-С:\dev-pack-master> set  http_proxy=http://username:password@proxy:80/
-С:\dev-pack-master> set https_proxy=http://username:password@proxy:80/
+С:\dev-kit-master> set  http_proxy=http://username:password@proxy:80/
+С:\dev-kit-master> set https_proxy=http://username:password@proxy:80/
 
-С:\dev-pack-master> make download-nmc (скачать только nmc инструменты)  
-С:\dev-pack-master> make download-arm (скачать только arm инструменты)  
-С:\dev-pack-master> make download     (скачать arm + nmc инструменты)  
+С:\dev-kit-master> make download-nmc (скачать только nmc инструменты)  
+С:\dev-kit-master> make download-arm (скачать только arm инструменты)  
+С:\dev-kit-master> make download     (скачать arm + nmc инструменты)  
 ```   
 
 4.Уставить необходимые пакеты:    
 ```bat
-С:\dev-pack-master> make install-nmc (установить только nmc инструменты)  
-С:\dev-pack-master> make install-arm (установить только arm инструменты)  
-С:\dev-pack-master> make install     (установить arm + nmc инструменты)  
+С:\dev-kit-master> make install-nmc (установить только nmc инструменты)  
+С:\dev-kit-master> make install-arm (установить только arm инструменты)  
+С:\dev-kit-master> make install     (установить arm + nmc инструменты)  
 ```   
 
 5.Установить переменную окружения DEVPACK (для текущего пользователя)
 ```bat
-С:\dev-pack-master> set-devpack.bat
+С:\dev-kit-master> set-devkit.bat
 ```	
 <!-- > Для установки переменной требутся setx утилита. Windows XP не содержит setx. Необходимо установить [Windows Support Tools for Microsoft Windows XP](https://www.microsoft.com/en-us/download/details.aspx?id=18546) -->
 6.Установить  переменную окружения NEURO  (для текущего пользователя)
 ```bat
-С:\dev-pack-master> set-neuro.bat
+С:\dev-kit-master> set-neuro.bat
 ```	
 
 Добавление необходимых путей (%NEURO%\bin) в переменную PATН осуществляется самостоятельно. 
