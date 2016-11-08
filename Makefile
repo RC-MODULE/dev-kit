@@ -46,6 +46,8 @@ export PATH := $(NEURO)/bin;$(PATH);
   #MB7707SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_02_x32.zip
   MB7707SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
   WINPCAP_URL       = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
+  VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
+  VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
   # ARM-NMC MB7707 support :
   EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
   NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
@@ -100,7 +102,7 @@ PACKAGES_NMC = $(notdir $(NMC_URLS))
 
 install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 
 
-install-boards:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
+install-brd:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
 
 download-nmc: $(PACKAGES_NMC)
 
@@ -217,6 +219,20 @@ mc12101sdk: $(notdir $(MC12101SDK_URL))
 $(notdir $(MC12101SDK_URL)):
 	$(OS_WGET) $(MC12101SDK_URL)
 
+
+#---------------------------------------------------------	
+install-vshell: vshell32
+	setenv -a VSHELL32 $(realpath .)/vshell32
+	setenv -a PATH %%VSHELL32%\bin;
+
+vshell32: $(notdir $(VSHELL32_URL)) 
+	$(OS_UNZIP) $(<) 
+	
+$(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
+	$(OS_WGET) $(VSHELL32_URL)
+	$(OS_WGET) $(VSHELL32_DIST)
+	
+	
 ################## ARM NMC support ############################################################	
 PACKAGES_ARM = $(notdir $(SYSROOT_URL)  $(FIRMWARE7707_URL) $(ARM_TOOLCHAIN_URL)) nmc-utils-0.1.1.zip	
 

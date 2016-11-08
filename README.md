@@ -9,6 +9,7 @@
 - mb7707sdk  - комплект поддержки вычислительного модуля МВ77.07  
 - mc5103sdk  - комплект поддержки вычислительного модуля МЦ51.03  
 - mc7601sdk  - комплект поддержки вычислительного модуля МЦ76.01  
+- mc12101sdk - комплект поддержки вычислительного модуля МЦ121.01  
 - nm_io - библиотека поддержки printf для модуля МЦ51.03
 - nmcalculator  - интерактивный помощник при разработке программного обеспечения для процессора NeuroMatrix
 - nmc-utils  - поддержка для модуля МВ77.07 [libeasynmc and userspace Neuromatrix DSP tools](https://github.com/RC-MODULE/nmc-utils)  
@@ -41,24 +42,33 @@
 ```   
 
 4.Уставить необходимые пакеты:    
-```bat
-С:\dev-kit-master> make install-nmc (установить только nmc инструменты)  
+```
+С:\dev-kit-master> make install-nmc (установить только NMSDK +nmclaculator+asm-highleighter )  
+С:\dev-kit-master> make install-mb7707sdk  (установить ПО поддержки модуля МВ77.07 ) 
+С:\dev-kit-master> make install-mc5103sdk  (установить ПО поддержки модуля МЦ51.03 )
+С:\dev-kit-master> make install-mc7601sdk  (установить ПО поддержки модуля МЦ76.01 )
+С:\dev-kit-master> make install-mc12101sdk (установить ПО поддержки модуля МЦ121.01)
+С:\dev-kit-master> make install-brd (установить ПО подддержки всех плат )
 С:\dev-kit-master> make install-arm (установить только arm инструменты)  
 С:\dev-kit-master> make install     (установить arm + nmc инструменты)  
 ```   
+
+Выполнение ``` make install-XXXX```   модифицирует переменную **PATH** и создает переменные окружения MC5103SDK,MC7601SDK,MB7707SDK,MB7707MAC,MC12101SDK ...
+
+<!-- > Для установки переменной требутся setx утилита. Windows XP не содержит setx. Необходимо установить [Windows Support Tools for Microsoft Windows XP](https://www.microsoft.com/en-us/download/details.aspx?id=18546) 
+6.Установить  переменную окружения NEURO  (для текущего пользователя)
+```bat
+С:\dev-kit-master> set-neuro.bat
+
 
 5.Установить переменную окружения DEVPACK (для текущего пользователя)
 ```bat
 С:\dev-kit-master> set-devkit.bat
 ```	
-<!-- > Для установки переменной требутся setx утилита. Windows XP не содержит setx. Необходимо установить [Windows Support Tools for Microsoft Windows XP](https://www.microsoft.com/en-us/download/details.aspx?id=18546) -->
-6.Установить  переменную окружения NEURO  (для текущего пользователя)
-```bat
-С:\dev-kit-master> set-neuro.bat
 ```	
 
 Добавление необходимых путей (%NEURO%\bin) в переменную PATН осуществляется самостоятельно. 
-
+-->
 
 
   
