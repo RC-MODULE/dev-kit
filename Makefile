@@ -14,12 +14,12 @@
 #   make    download-arm                                                 #
 #                                                                        #
 ##########################################################################
-
+-include proxy-wget.mk
 -include proxy.mk
 #define proxy setting if required in proxy.mk like:
 #export  https_proxy=http://login:pass@proxyserver:port
 #export  http_proxy =http://login:pass@proxyserver:port
-
+SETENV  =n
 SHELL    = cmd
 OS_RM    = del /Q
 OS_RD    = rd /Q /S 
@@ -35,19 +35,17 @@ export PATH := $(NEURO)/bin;$(PATH);
   #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
   #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20160527.zip
   NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20161011.zip
-  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/module-nmc-20160804.tar.gz
+  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-20160804.tar.gz
   #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
   VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
-  VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
-  VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
   NMCALC_URL         = http://www.module.ru/mb7707/NeuroMatrix/nmcalculator.zip 
-  NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
   # Pure NMC Board support:
-  SDK_MC5103_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
-  SDK_MC7601_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
-  #SDK_MB7707_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_02_x32.zip
-  SDK_MB7707_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
-  WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
+  MC5103SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
+  MC7601SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
+  MC12101SDK_URL    = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_distrib_x32.zip
+  #MB7707SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_02_x32.zip
+  MB7707SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
+  WINPCAP_URL       = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
   # ARM-NMC MB7707 support :
   EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
   NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
@@ -61,6 +59,8 @@ export PATH := $(NEURO)/bin;$(PATH);
   #ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-03082016.zip
   ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/ci/toolchains/raspbian/windows/arm-rcm-linux-gnueabihf-07092016.zip
   
+  HIGHLIGHTER_URL    = https://github.com/RC-MODULE/asm-highlighter/archive/master.zip
+  
   #ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
 
 ## SCRIPTS:
@@ -72,8 +72,8 @@ export PATH := $(NEURO)/bin;$(PATH);
 # * [Visual Studio 2013 Express](https://www.microsoft.com/en-US/download/details.aspx?id=44914)    
 #
 ## FOR LINUX:
-#  SDK_MC5103_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01.tar.gz
-#  SDK_MB7707_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_00.tar.gz
+#  MC5103SDK_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01.tar.gz
+#  MB7707SDK_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_00.tar.gz
 #  NMSDK_URL      = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk.tar.gz
 #  NM_IO_URL      = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
   
@@ -81,12 +81,10 @@ NMC_URLS = \
 	$(NMSDK_URL)      \
 	$(VCREDIST_URL)	  \
 	$(NM_IO_URL)      \
-	$(VSHELL32_URL)   \
-	$(VSHELL32_DIST)  \
 	$(NMCALC_URL)     \
-	$(SDK_MC5103_URL) \
-	$(SDK_MC7601_URL) \
-	$(SDK_MB7707_URL) \
+	$(MC5103SDK_URL) \
+	$(MC7601SDK_URL) \
+	$(MB7707SDK_URL) \
 	$(EDCLTOOL_URL)   \
 	$(WINPCAP_URL)
 	
@@ -99,82 +97,125 @@ download: download-nmc   download-arm
 PACKAGES_NMC = $(notdir $(NMC_URLS)) 
 
 
-install-nmc:  module-nmc nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32 winpcap
-	
+
+install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 
+
+install-boards:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
+
 download-nmc: $(PACKAGES_NMC)
 
-$(notdir $(VCREDIST_URL)):
-	$(OS_WGET) $(VCREDIST_URL)
+#-------------------------------------------------------
 	
-mc5103sdk: $(notdir $(SDK_MC5103_URL)) 
-	$(OS_UNZIP) $(<) -d module-nmc
-
-$(notdir $(SDK_MC5103_URL)):
-	$(OS_WGET) $(SDK_MC5103_URL)
+install-nmsdk:  nmsdk 
+	setenv -a NEURO $(realpath .)/nmsdk
+	setenv -a PATH %%NEURO%\bin;
+	@echo ***********************************************
+	@echo ** Installation Neuro Matrix SDK completed!  **
+	@echo ***********************************************
 	
-mb7707sdk: $(notdir $(SDK_MB7707_URL)) 
-	$(OS_UNZIP) $(<) -d module-nmc
-
-$(notdir $(SDK_MB7707_URL)): 
-	$(OS_WGET) $(SDK_MB7707_URL)
-	
-mc7601sdk: $(notdir $(SDK_MC7601_URL)) 
-	$(OS_UNZIP) $(<) -d module-nmc 
-
-$(notdir $(SDK_MC7601_URL)):
-	$(OS_WGET) $(SDK_MC7601_URL)
-	
-module-nmc: $(notdir $(NMSDK_URL)) 
-	$(OS_UNZIP) $(<) -d $(@)
-	
-#module-nmc: $(notdir $(NMSDK_URL))  
-#	$(OS_GZIP) $(<)
-#	$(OS_TAR)  $(NMSDK_TAR)
-
-#	@echo raspbian-jessie-matlab has been installed > $(@)
-	
-	
-	
+nmsdk: $(notdir $(NMSDK_URL)) $(notdir $(VCREDIST_URL))
+	$(OS_UNZIP) $(<) -d nmsdk
+	-$(notdir $(VCREDIST_URL))
 
 $(notdir $(NMSDK_URL)):
 	$(OS_WGET) $(NMSDK_URL)
 	
-vshell32: $(notdir $(VSHELL32_URL)) 
-	$(OS_UNZIP) $(<) 
-	
-$(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
-	$(OS_WGET) $(VSHELL32_URL)
-	$(OS_WGET) $(VSHELL32_DIST)
-	
+$(notdir $(VCREDIST_URL)):
+	$(OS_WGET) $(VCREDIST_URL)
 
-nm_io: $(notdir $(NM_IO_URL)) 
-	$(OS_UNZIP) $(<) 
-
-$(notdir $(NM_IO_URL)):
-	$(OS_WGET) $(NM_IO_URL)
 	
+#---------------------------------------------------------------	
 nmcalculator: $(notdir $(NMCALC_URL)) 
 	$(OS_UNZIP) $(<) 
 	
 $(notdir $(NMCALC_URL)):
 	$(OS_WGET) $(NMCALC_URL)
 	
+#---------------------------------------------------------------	
+highlighter:  asm-highlighter-master
+
+asm-highlighter-master:
+	$(OS_WGET) $(HIGHLIGHTER_URL)
+	$(OS_UNZIP) asm-highlighter-master.zip
+	
+#---------------------------------------------------------------		
 edcltool-win32: $(notdir $(EDCLTOOL_URL))  $(TAR)
 	$(OS_GZIP) $(<) 
 	$(OS_TAR) edcltool-20042015-win32.tar
 
-winpcap: $(notdir $(WINPCAP_URL))
-	@echo *******************************************
-	@echo ** Install WinPcap manualy.              **
-	@echo *******************************************
-	
-$(notdir $(WINPCAP_URL)):
-	$(OS_WGET) $(WINPCAP_URL)
-	
 $(notdir $(EDCLTOOL_URL)): 
 	$(OS_WGET) $(EDCLTOOL_URL)
 
+#----------------------------------------------------------
+install-mc5103sdk: mc5103sdk ./nmsdk/bin/mc5103_mon.abs
+	setenv -a MC5103SDK $(realpath .)/mc5103sdk
+	setenv -a PATH %%MC5103SDK%\bin;
+	@echo *********************************************
+	@echo ** Installation MC5103SDK completed!       **
+	@echo ** Install board driver manualy            **
+	@echo *********************************************
 
+mc5103sdk: $(notdir $(MC5103SDK_URL)) 
+	$(OS_UNZIP) $(<) -d mc5103sdk
+
+./nmsdk/bin/mc5103_mon.abs:
+	-mkdir nmsdk & cd nmsdk & mkdir bin
+	cp ./mc5103sdk/bin/mc5103_mon.abs ./nmsdk/bin/
+
+$(notdir $(MC5103SDK_URL)):
+	$(OS_WGET) $(MC5103SDK_URL)
+
+#----------------------------------------------------------
+install-mb7707sdk: mb7707sdk
+	setenv -a MB7707SDK $(realpath .)/mb7707sdk
+	setenv -a MB7707MAC 1A-2B-3C-4D-5E-6F
+	setenv -a MB7707ETH 1
+	setenv -a PATH %%MB7707SDK%\bin;
+	@echo *********************************************
+	@echo ** Installation MB7707SDK completed!       **
+	@echo ** Install board driver manualy            **
+	@echo *********************************************
+	
+	
+mb7707sdk: $(notdir $(MB7707SDK_URL)) $(notdir $(WINPCAP_URL))
+	$(OS_UNZIP) $(<) -d mb7707sdk
+	-$(notdir $(WINPCAP_URL))
+	
+$(notdir $(MB7707SDK_URL)): 
+	$(OS_WGET) $(MB7707SDK_URL)
+
+$(notdir $(WINPCAP_URL)): 
+	$(OS_WGET) $(WINPCAP_URL)
+	
+#----------------------------------------------------------
+install-mc7601sdk: mc7601sdk
+	setenv -a MC7601SDK $(realpath .)/mc7601sdk
+	setenv -a PATH %%MC7601SDK%\bin;
+	@echo *********************************************
+	@echo ** Installation MC7601SDK completed!       **
+	@echo *********************************************
+	
+mc7601sdk: $(notdir $(MC7601SDK_URL)) 
+	$(OS_UNZIP) $(<) -d mc7601sdk 
+
+$(notdir $(MC7601SDK_URL)):
+	$(OS_WGET) $(MC7601SDK_URL)
+	
+#---------------------------------------------------------
+	
+install-mc12101sdk: mc12101sdk
+	setenv -a MC12101SDK $(realpath .)/mc12101sdk
+	setenv -a PATH %%MC12101SDK%\bin;
+	@echo *********************************************
+	@echo ** Installation MC12101SDK completed!      **
+	@echo ** Install board driver manualy            **
+	@echo *********************************************
+	
+mc12101sdk: $(notdir $(MC12101SDK_URL)) 
+	$(OS_UNZIP) $(<) -d mc12101sdk 
+	
+$(notdir $(MC12101SDK_URL)):
+	$(OS_WGET) $(MC12101SDK_URL)
 
 ################## ARM NMC support ############################################################	
 PACKAGES_ARM = $(notdir $(SYSROOT_URL)  $(FIRMWARE7707_URL) $(ARM_TOOLCHAIN_URL)) nmc-utils-0.1.1.zip	
@@ -183,7 +224,7 @@ install-arm:  nmc-utils-0.1.1 raspbian-jessie-matlab arm-toolchain
 
 download-arm: $(PACKAGES_ARM)
 
-nmc-utils-0.1.1:  nmc-utils-0.1.1.zip module-nmc 
+nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk 
 	$(OS_UNZIP) $(<) 
 	$(MAKE) -C nmc-utils-0.1.1/libeasynmc-nmc
 
@@ -225,7 +266,7 @@ $(notdir $(LUA_URL)):
 	$(OS_WGET) $(LUA_URL) 
 
 set-neuro: 	
-	setenv -a NEURO $(realpath .)/module-nmc
+	setenv -a NEURO $(realpath .)/nmsdk
 	
 #	setx NEURO $(realpath .)/nmsdk
 
@@ -253,11 +294,11 @@ path:
 
 clean:
 	-$(OS_RM) *.zip *.exe *.tgz *.tar *.gz
-	-$(OS_RD) mb7707sdk mc5103sdk mc7601sdk nmsdk vshell32 gnuwin32 nm_io gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32 lua
+	-$(OS_RD) mb7707sdk mc5103sdk mc7601sdk mc12101sdk nmsdk asm-highlighter-master gnuwin32 gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32 lua
 
 clean-nmc:
 	-$(OS_RM) $(PACKAGES_NMC)  winpcap
-	-$(OS_RD) nmsdk nm_io mc5103sdk mb7707sdk mc7601sdk vshell32 nmcalculator edcltool-win32
+	-$(OS_RD) nmsdk mc5103sdk mb7707sdk mc7601sdk nmcalculator edcltool-win32
 	
 clean-gnu:
 	-$(OS_RM) $(PACKAGES_GNU) 
