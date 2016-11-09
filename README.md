@@ -53,7 +53,7 @@
 С:\dev-kit-master> make install     (установить arm + nmc инструменты)  
 ```   
 
-Выполнение ``` make install-XXXX```   модифицирует переменную **PATH** и создает переменные окружения MC5103SDK,MC7601SDK,MB7707SDK,MB7707MAC,MC12101SDK ...
+Выполнение ``` make install-XXXX```   модифицирует переменную **PATH** и создает переменные окружения MC5103,MC7601,MB7707,MB7707MAC,MC12101 ...
 
 <!-- > Для установки переменной требутся setx утилита. Windows XP не содержит setx. Необходимо установить [Windows Support Tools for Microsoft Windows XP](https://www.microsoft.com/en-us/download/details.aspx?id=18546) 
 6.Установить  переменную окружения NEURO  (для текущего пользователя)

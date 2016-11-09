@@ -150,8 +150,8 @@ $(notdir $(EDCLTOOL_URL)):
 
 #----------------------------------------------------------
 install-mc5103sdk: mc5103sdk ./nmsdk/bin/mc5103_mon.abs
-	setenv -a MC5103SDK $(realpath .)/mc5103sdk
-	setenv -a PATH %%MC5103SDK%\bin;
+	setenv -a MC5103 $(realpath .)/mc5103sdk
+	setenv -a PATH %%MC5103%\bin;
 	@echo *********************************************
 	@echo ** Installation MC5103SDK completed!       **
 	@echo ** Install board driver manualy            **
@@ -169,10 +169,10 @@ $(notdir $(MC5103SDK_URL)):
 
 #----------------------------------------------------------
 install-mb7707sdk: mb7707sdk
-	setenv -a MB7707SDK $(realpath .)/mb7707sdk
+	setenv -a MB7707 $(realpath .)/mb7707sdk
 	setenv -a MB7707MAC 1A-2B-3C-4D-5E-6F
 	setenv -a MB7707ETH 1
-	setenv -a PATH %%MB7707SDK%\bin;
+	setenv -a PATH %%MB7707%\bin;
 	@echo *********************************************
 	@echo ** Installation MB7707SDK completed!       **
 	@echo ** Install board driver manualy            **
@@ -191,8 +191,8 @@ $(notdir $(WINPCAP_URL)):
 	
 #----------------------------------------------------------
 install-mc7601sdk: mc7601sdk
-	setenv -a MC7601SDK $(realpath .)/mc7601sdk
-	setenv -a PATH %%MC7601SDK%\bin;
+	setenv -a MC7601 $(realpath .)/mc7601sdk
+	setenv -a PATH %%MC7601%\bin;
 	@echo *********************************************
 	@echo ** Installation MC7601SDK completed!       **
 	@echo *********************************************
@@ -206,8 +206,8 @@ $(notdir $(MC7601SDK_URL)):
 #---------------------------------------------------------
 	
 install-mc12101sdk: mc12101sdk
-	setenv -a MC12101SDK $(realpath .)/mc12101sdk
-	setenv -a PATH %%MC12101SDK%\bin;
+	setenv -a MC12101 $(realpath .)/mc12101sdk
+	setenv -a PATH %%MC12101%\bin;
 	@echo *********************************************
 	@echo ** Installation MC12101SDK completed!      **
 	@echo ** Install board driver manualy            **
@@ -221,7 +221,7 @@ $(notdir $(MC12101SDK_URL)):
 
 
 #---------------------------------------------------------	
-install-vshell: vshell32
+install-vshell32: vshell32
 	setenv -a VSHELL32 $(realpath .)/vshell32
 	setenv -a PATH %%VSHELL32%\bin;
 
