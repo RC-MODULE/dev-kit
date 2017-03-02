@@ -42,13 +42,15 @@ export PATH := $(NEURO)/bin;$(PATH);
   # Pure NMC Board support:
   MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
   MC7601SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
-  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_distrib_x32.zip
+  #MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_distrib_x32.zip
+  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_distrib_x32-2017-03-02.zip
   #MB7707SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_02_x32.zip
   MB7707SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
   WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
   VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
   VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
-  NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
+  #NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
+  NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io-2017-03-02.zip
   # ARM-NMC MB7707 support :
   EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
   NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
