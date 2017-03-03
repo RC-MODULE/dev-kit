@@ -31,10 +31,11 @@ OS_TAR   = tar -xf
 export NEURO = $(realpath ./nmsdk)
 export PATH := $(NEURO)/bin;$(PATH);
 
+
 ## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20160527.zip
-  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20161123.zip
+  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20161123.zip 
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-20160804.tar.gz
   #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
   VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
@@ -123,7 +124,7 @@ nmsdk: $(notdir $(NMSDK_URL)) $(notdir $(VCREDIST_URL))
 	-$(notdir $(VCREDIST_URL))
 
 $(notdir $(NMSDK_URL)):
-	$(OS_WGET) $(NMSDK_URL)
+	$(OS_WGET) $(NMSDK_URL) $(NOPROXY)
 	
 $(notdir $(VCREDIST_URL)):
 	$(OS_WGET) $(VCREDIST_URL)
@@ -134,7 +135,7 @@ nmcalculator: $(notdir $(NMCALC_URL))
 	$(OS_UNZIP) $(<) 
 	
 $(notdir $(NMCALC_URL)):
-	$(OS_WGET) $(NMCALC_URL)
+	$(OS_WGET) $(NMCALC_URL) $(NOPROXY)
 	
 #---------------------------------------------------------------	
 highlighter:  asm-highlighter-master
@@ -168,7 +169,7 @@ mc5103sdk: $(notdir $(MC5103SDK_URL))
 	cp ./mc5103sdk/bin/mc5103_mon.abs ./nmsdk/bin/
 
 $(notdir $(MC5103SDK_URL)):
-	$(OS_WGET) $(MC5103SDK_URL)
+	$(OS_WGET) $(MC5103SDK_URL) $(NOPROXY)
 
 #----------------------------------------------------------
 install-mb7707sdk: mb7707sdk
@@ -187,7 +188,7 @@ mb7707sdk: $(notdir $(MB7707SDK_URL)) $(notdir $(WINPCAP_URL))
 	-$(notdir $(WINPCAP_URL))
 	
 $(notdir $(MB7707SDK_URL)): 
-	$(OS_WGET) $(MB7707SDK_URL)
+	$(OS_WGET) $(MB7707SDK_URL) $(NOPROXY)
 
 $(notdir $(WINPCAP_URL)): 
 	$(OS_WGET) $(WINPCAP_URL)
@@ -204,7 +205,7 @@ mc7601sdk: $(notdir $(MC7601SDK_URL))
 	$(OS_UNZIP) $(<) -d mc7601sdk 
 
 $(notdir $(MC7601SDK_URL)):
-	$(OS_WGET) $(MC7601SDK_URL)
+	$(OS_WGET) $(MC7601SDK_URL) $(NOPROXY)
 	
 #---------------------------------------------------------
 	
@@ -220,7 +221,7 @@ mc12101sdk: $(notdir $(MC12101SDK_URL))
 	$(OS_UNZIP) $(<) -d mc12101sdk 
 	
 $(notdir $(MC12101SDK_URL)):
-	$(OS_WGET) $(MC12101SDK_URL)
+	$(OS_WGET) $(MC12101SDK_URL) $(NOPROXY)
 
 
 #---------------------------------------------------------	
@@ -232,15 +233,15 @@ vshell32: $(notdir $(VSHELL32_URL))
 	$(OS_UNZIP) $(<) 
 	
 $(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
-	$(OS_WGET) $(VSHELL32_URL)
-	$(OS_WGET) $(VSHELL32_DIST)
+	$(OS_WGET) $(VSHELL32_URL) $(NOPROXY)
+	$(OS_WGET) $(VSHELL32_DIST) $(NOPROXY)
 	
 #---------------------------------------------------------
 nm_io: $(notdir $(NM_IO_URL)) 
 	$(OS_UNZIP) $(<) 
 	
 $(notdir $(NM_IO_URL)):
-	$(OS_WGET) $(NM_IO_URL)
+	$(OS_WGET) $(NM_IO_URL) $(NOPROXY)
 
 
 ################## ARM NMC support ############################################################	
@@ -255,7 +256,7 @@ nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk
 	$(MAKE) -C nmc-utils-0.1.1/libeasynmc-nmc
 
 nmc-utils-0.1.1.zip:  
-	$(OS_WGET) $(NMC_UTILS_URL)
+	$(OS_WGET) $(NMC_UTILS_URL) $(NOPROXY)
 	
 arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) 
 	$(OS_UNZIP) $(<) 
@@ -268,10 +269,10 @@ arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL))
 #	$(OS_TAR)  $(SYSROOT_TAR) -C .\i686-w64-mingw32\arm-linux-gnueabihf\libc
 	
 $(notdir $(ARM_TOOLCHAIN_URL)):  
-	$(OS_WGET) $(ARM_TOOLCHAIN_URL)
+	$(OS_WGET) $(ARM_TOOLCHAIN_URL) $(NOPROXY)
 	
 $(notdir $(SYSROOT_URL)):  
-	$(OS_WGET) $(SYSROOT_URL)
+	$(OS_WGET) $(SYSROOT_URL) $(NOPROXY)
 	
 raspbian-jessie-matlab: raspbian-jessie-matlab/.installed
 
@@ -281,7 +282,7 @@ raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL))
 	@echo raspbian-jessie-matlab has been installed > $(@)
 
 $(notdir $(FIRMWARE7707_URL)):   
-	$(OS_WGET) $(FIRMWARE7707_URL)
+	$(OS_WGET) $(FIRMWARE7707_URL) $(NOPROXY)
 	
 ############################################
 
