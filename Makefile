@@ -27,7 +27,7 @@ OS_WGET  = wget -nc --no-check-certificate --content-disposition
 OS_UNZIP = unzip -u -o -q 
 OS_GZIP  = gzip -d -f -k -v
 OS_TAR   = tar -xf
-
+#USER     =u
 export NEURO = $(realpath ./nmsdk)
 export PATH := $(NEURO)/bin;$(PATH);
 
@@ -113,8 +113,8 @@ download-nmc: $(PACKAGES_NMC)
 #-------------------------------------------------------
 	
 install-nmsdk:  nmsdk 
-	setenv -a NEURO $(realpath .)/nmsdk
-	setenv -a PATH %%NEURO%\bin;
+	setenv -$(USER)a NEURO $(realpath .)/nmsdk
+	setenv -$(USER)a PATH %%NEURO%\bin;
 	@echo ***********************************************
 	@echo ** Installation Neuro Matrix SDK completed!  **
 	@echo ***********************************************
@@ -150,12 +150,12 @@ edcltool-win32: $(notdir $(EDCLTOOL_URL))  $(TAR)
 	$(OS_TAR) edcltool-20042015-win32.tar
 
 $(notdir $(EDCLTOOL_URL)): 
-	$(OS_WGET) $(EDCLTOOL_URL)
+	$(OS_WGET) $(EDCLTOOL_URL) $(NOPROXY)
 
 #----------------------------------------------------------
 install-mc5103sdk: mc5103sdk ./nmsdk/bin/mc5103_mon.abs
-	setenv -a MC5103 $(realpath .)/mc5103sdk
-	setenv -a PATH %%MC5103%\bin;
+	setenv -$(USER)a MC5103 $(realpath .)/mc5103sdk
+	setenv -$(USER)a PATH %%MC5103%\bin;
 	@echo *********************************************
 	@echo ** Installation MC5103SDK completed!       **
 	@echo ** Install board driver manualy            **
@@ -173,10 +173,10 @@ $(notdir $(MC5103SDK_URL)):
 
 #----------------------------------------------------------
 install-mb7707sdk: mb7707sdk
-	setenv -a MB7707 $(realpath .)/mb7707sdk
-	setenv -a MB7707MAC 1A-2B-3C-4D-5E-6F
-	setenv -a MB7707ETH 1
-	setenv -a PATH %%MB7707%\bin;
+	setenv -$(USER)a MB7707 $(realpath .)/mb7707sdk
+	setenv -$(USER)a MB7707MAC 1A-2B-3C-4D-5E-6F
+	setenv -$(USER)a MB7707ETH 1
+	setenv -$(USER)a PATH %%MB7707%\bin;
 	@echo *********************************************
 	@echo ** Installation MB7707SDK completed!       **
 	@echo ** Install board driver manualy            **
@@ -195,8 +195,8 @@ $(notdir $(WINPCAP_URL)):
 	
 #----------------------------------------------------------
 install-mc7601sdk: mc7601sdk
-	setenv -a MC7601 $(realpath .)/mc7601sdk
-	setenv -a PATH %%MC7601%\bin;
+	setenv -$(USER)a MC7601 $(realpath .)/mc7601sdk
+	setenv -$(USER)a PATH %%MC7601%\bin;
 	@echo *********************************************
 	@echo ** Installation MC7601SDK completed!       **
 	@echo *********************************************
@@ -210,8 +210,8 @@ $(notdir $(MC7601SDK_URL)):
 #---------------------------------------------------------
 	
 install-mc12101sdk: mc12101sdk
-	setenv -a MC12101 $(realpath .)/mc12101sdk
-	setenv -a PATH %%MC12101%\bin;
+	setenv -$(USER)a MC12101 $(realpath .)/mc12101sdk
+	setenv -$(USER)a PATH %%MC12101%\bin;
 	@echo *********************************************
 	@echo ** Installation MC12101SDK completed!      **
 	@echo ** Install board driver manualy            **
@@ -226,8 +226,8 @@ $(notdir $(MC12101SDK_URL)):
 
 #---------------------------------------------------------	
 install-vshell32: vshell32
-	setenv -a VSHELL32 $(realpath .)/vshell32
-	setenv -a PATH %%VSHELL32%\bin;
+	setenv -$(USER)a VSHELL32 $(realpath .)/vshell32
+	setenv -$(USER)a PATH %%VSHELL32%\bin;
 
 vshell32: $(notdir $(VSHELL32_URL)) 
 	$(OS_UNZIP) $(<) 
@@ -293,17 +293,17 @@ $(notdir $(LUA_URL)):
 	$(OS_WGET) $(LUA_URL) 
 
 set-neuro: 	
-	setenv -a NEURO $(realpath .)/nmsdk
+	setenv -$(USER)a NEURO $(realpath .)/nmsdk
 	
 #	setx NEURO $(realpath .)/nmsdk
 
-set-devpack: 	
-	setenv -a DEVPACK $(realpath .)
+set-devkit: 	
+	setenv -ua DEVKIT $(realpath .)
 	
-#	setx DEVPACK $(realpath .)
+#	setx DEVKIT $(realpath .)
 
 path-nmsdk:
-	setenv -a PATH %%NEURO%\bin;
+	setenv -$(USER)a PATH %%NEURO%\bin;
 	
 #	expr length "%path%;%cd%" >.path.len & cat .path.len & set /p len=<.path.len & if %len% LEQ 11024 (setx ppp $(PATH);$(realpath .)) else echo wt
 
