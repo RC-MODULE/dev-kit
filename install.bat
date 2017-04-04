@@ -1,6 +1,8 @@
 @echo off
 echo This will download and install dev-kit and xslt-processor to the current directory
-echo WARNING: use --no-proxy option if are inside RC Module
+ping vmproxy1.module.ru -n 1 > proxy.test
+if  %ERRORLEVEL%==0 set bypass_rcm_proxy=--no-proxy
+echo %bypass_rcm_proxy%
 choice /M "Do you have proxy server?"
 if errorlevel 2 goto start 
 
@@ -17,4 +19,4 @@ set https_proxy=https://%login%:%password%@%proxy%
 :start
 
 
-make install NOPROXY=%1
+make install NOPROXY=%bypass_rcm_proxy%
