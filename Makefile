@@ -108,6 +108,8 @@ install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32
 
 install-brd:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
 
+boards:  mc5103sdk mb7707sdk mc7601sdk mc12101sdk
+
 download-nmc: $(PACKAGES_NMC)
 
 #-------------------------------------------------------
