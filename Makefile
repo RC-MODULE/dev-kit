@@ -52,7 +52,7 @@ export PATH := $(NEURO)/bin;$(PATH);
   VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
   #NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
   NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io-2017-03-02.zip
-  NMSERVER           = http://www.module.ru/mb7707/NeuroMatrix/NMServer.zip
+  NMSERVER_URL       = http://www.module.ru/mb7707/NeuroMatrix/NMServer.zip
   # ARM-NMC MB7707 support :
   EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
   NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
@@ -143,7 +143,7 @@ $(notdir $(NMCALC_URL)):
 #---------------------------------------------------------------	
 nmserver: $(notdir $(NMSERVER_URL)) 
 	$(OS_UNZIP) $(<) 
-	
+
 $(notdir $(NMSERVER_URL)):
 	$(OS_WGET) $(NMSERVER_URL) $(NOPROXY)
 	
