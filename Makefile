@@ -23,7 +23,7 @@ SETENV  =n
 SHELL    = cmd
 OS_RM    = del /Q
 OS_RD    = rd /Q /S 
-OS_WGET  = wget -nc --no-check-certificate --content-disposition 
+OS_WGET  = wget -nc --no-check-certificate --content-disposition --tries=2
 OS_UNZIP = unzip -u -o -q 
 OS_GZIP  = gzip -d -f -k -v
 OS_TAR   = tar -xf
@@ -267,7 +267,7 @@ nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk
 	$(MAKE) -C nmc-utils-0.1.1/libeasynmc-nmc
 
 nmc-utils-0.1.1.zip:  
-	$(OS_WGET) $(NMC_UTILS_URL) $(NOPROXY)
+	$(OS_WGET) $(NMC_UTILS_URL) 
 	
 arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) 
 	$(OS_UNZIP) $(<) 
