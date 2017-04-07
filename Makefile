@@ -114,25 +114,24 @@ boards:  mc5103sdk mb7707sdk mc7601sdk mc12101sdk nmserver
 download-nmc: $(PACKAGES_NMC)
 
 #-------------------------------------------------------
-	
+
 install-nmsdk:  nmsdk 
 	setenv -$(USER)a NEURO $(realpath .)/nmsdk
 	setenv -$(USER)a PATH %%NEURO%\bin;
 	@echo ***********************************************
 	@echo ** Installation Neuro Matrix SDK completed!  **
 	@echo ***********************************************
-	
+
 nmsdk: $(notdir $(NMSDK_URL)) $(notdir $(VCREDIST_URL))
 	$(OS_UNZIP) $(<) -d nmsdk
 	-$(notdir $(VCREDIST_URL))
 
 $(notdir $(NMSDK_URL)):
 	$(OS_WGET) $(NMSDK_URL) $(NOPROXY)
-	
+
 $(notdir $(VCREDIST_URL)):
 	$(OS_WGET) $(VCREDIST_URL)
 
-	
 #---------------------------------------------------------------	
 nmcalculator: $(notdir $(NMCALC_URL)) 
 	$(OS_UNZIP) $(<) 
@@ -146,15 +145,14 @@ nmserver: $(notdir $(NMSERVER_URL))
 
 $(notdir $(NMSERVER_URL)):
 	$(OS_WGET) $(NMSERVER_URL) $(NOPROXY)
-	
-	
+
 #---------------------------------------------------------------	
 highlighter:  asm-highlighter-master
 
 asm-highlighter-master:
 	$(OS_WGET) $(HIGHLIGHTER_URL)
 	$(OS_UNZIP) asm-highlighter-master.zip
-	
+
 #---------------------------------------------------------------		
 edcltool-win32: $(notdir $(EDCLTOOL_URL))  $(TAR)
 	$(OS_GZIP) $(<) 
@@ -192,18 +190,18 @@ install-mb7707sdk: mb7707sdk
 	@echo ** Installation MB7707SDK completed!       **
 	@echo ** Install board driver manualy            **
 	@echo *********************************************
-	
-	
+
+
 mb7707sdk: $(notdir $(MB7707SDK_URL)) $(notdir $(WINPCAP_URL))
 	$(OS_UNZIP) $(<) -d mb7707sdk
 	-$(notdir $(WINPCAP_URL))
-	
+
 $(notdir $(MB7707SDK_URL)): 
 	$(OS_WGET) $(MB7707SDK_URL) $(NOPROXY)
 
 $(notdir $(WINPCAP_URL)): 
 	$(OS_WGET) $(WINPCAP_URL)
-	
+
 #----------------------------------------------------------
 install-mc7601sdk: mc7601sdk
 	setenv -$(USER)a MC7601 $(realpath .)/mc7601sdk
@@ -211,13 +209,13 @@ install-mc7601sdk: mc7601sdk
 	@echo *********************************************
 	@echo ** Installation MC7601SDK completed!       **
 	@echo *********************************************
-	
+
 mc7601sdk: $(notdir $(MC7601SDK_URL)) 
 	$(OS_UNZIP) $(<) -d mc7601sdk 
 
 $(notdir $(MC7601SDK_URL)):
 	$(OS_WGET) $(MC7601SDK_URL) $(NOPROXY)
-	
+
 #---------------------------------------------------------
 	
 install-mc12101sdk: mc12101sdk
@@ -227,10 +225,10 @@ install-mc12101sdk: mc12101sdk
 	@echo ** Installation MC12101SDK completed!      **
 	@echo ** Install board driver manualy            **
 	@echo *********************************************
-	
+
 mc12101sdk: $(notdir $(MC12101SDK_URL)) 
 	$(OS_UNZIP) $(<) -d mc12101sdk 
-	
+
 $(notdir $(MC12101SDK_URL)):
 	$(OS_WGET) $(MC12101SDK_URL) $(NOPROXY)
 
@@ -242,15 +240,15 @@ install-vshell32: vshell32
 
 vshell32: $(notdir $(VSHELL32_URL)) 
 	$(OS_UNZIP) $(<) 
-	
+
 $(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
 	$(OS_WGET) $(VSHELL32_URL) $(NOPROXY)
 	$(OS_WGET) $(VSHELL32_DIST) $(NOPROXY)
-	
+
 #---------------------------------------------------------
 nm_io: $(notdir $(NM_IO_URL)) 
 	$(OS_UNZIP) $(<) 
-	
+
 $(notdir $(NM_IO_URL)):
 	$(OS_WGET) $(NM_IO_URL) $(NOPROXY)
 
@@ -268,23 +266,23 @@ nmc-utils-0.1.1:  nmc-utils-0.1.1.zip nmsdk
 
 nmc-utils-0.1.1.zip:  
 	$(OS_WGET) $(NMC_UTILS_URL) 
-	
+
 arm-toolchain: $(notdir $(ARM_TOOLCHAIN_URL)) 
 	$(OS_UNZIP) $(<) 
-	
+
 # $(notdir $(SYSROOT_URL))	
 #	$(OS_GZIP) $(<)
 #	$(OS_TAR) $(ARM_TOOLCHAIN_TAR) 
 #	$(OS_GZIP) $(notdir $(SYSROOT_URL))
 #	mkdir .\i686-w64-mingw32\arm-linux-gnueabihf\libc
 #	$(OS_TAR)  $(SYSROOT_TAR) -C .\i686-w64-mingw32\arm-linux-gnueabihf\libc
-	
+
 $(notdir $(ARM_TOOLCHAIN_URL)):  
 	$(OS_WGET) $(ARM_TOOLCHAIN_URL) $(NOPROXY)
-	
+
 $(notdir $(SYSROOT_URL)):  
 	$(OS_WGET) $(SYSROOT_URL) $(NOPROXY)
-	
+
 raspbian-jessie-matlab: raspbian-jessie-matlab/.installed
 
 raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL))  
@@ -294,12 +292,12 @@ raspbian-jessie-matlab/.installed: $(notdir $(FIRMWARE7707_URL))
 
 $(notdir $(FIRMWARE7707_URL)):   
 	$(OS_WGET) $(FIRMWARE7707_URL) $(NOPROXY)
-	
+
 ############################################
 
 lua: $(notdir $(LUA_URL))
 	$(OS_UNZIP) $(<) -d lua
-		
+
 $(notdir $(LUA_URL)): 
 	$(OS_WGET) $(LUA_URL) 
 
@@ -310,12 +308,12 @@ set-neuro:
 
 set-devkit: 	
 	setenv -ua DEVKIT $(realpath .)
-	
+
 #	setx DEVKIT $(realpath .)
 
 path-nmsdk:
 	setenv -$(USER)a PATH %%NEURO%\bin;
-	
+
 #	expr length "%path%;%cd%" >.path.len & cat .path.len & set /p len=<.path.len & if %len% LEQ 11024 (setx ppp $(PATH);$(realpath .)) else echo wt
 
 path:
@@ -324,10 +322,10 @@ path:
 	setx len /f .path.len /a 0,0
 	echo %len%
 	if 10 leq 1024 	echo ok else echo wtf
-	
+
 #	(setx ppp %NEURO% %len%) else echo wtf
-	
-	
+
+
 #################### cleanup ##################################################################################
 
 clean:
@@ -337,7 +335,7 @@ clean:
 clean-nmc:
 	-$(OS_RM) $(PACKAGES_NMC)  winpcap
 	-$(OS_RD) nmsdk mc5103sdk mb7707sdk mc7601sdk nmcalculator edcltool-win32
-	
+
 clean-gnu:
 	-$(OS_RM) $(PACKAGES_GNU) 
 	-$(OS_RD) gnuwin32
@@ -345,7 +343,7 @@ clean-gnu:
 clean-arm:
 	-$(OS_RM) $(PACKAGES_ARM) 
 	-$(OS_RD) raspbian-jessie-matlab nmc-utils-0.1.1 i686-w64-mingw32
-	
+
 #	cmd /c copy /B gnuwin32\bin\wget.exe+,, gnuwin32\bin\wget.exe
 #	cmd /c copy /B gnuwin32\bin\7za.exe+,, gnuwin32\bin\7za.exe
 #download-7zip-wget $(notdir $(ZIP7_URL)) $(notdir $(WGET_BIN_URL)) $(notdir $(WGET_DEP_URL)):
