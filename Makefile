@@ -105,7 +105,7 @@ PACKAGES_NMC = $(notdir $(NMC_URLS))
 
 
 
-install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 
+install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 nm_io
 
 install-brd:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
 
