@@ -19,4 +19,4 @@ set https_proxy=https://%login%:%password%@%proxy%
 :start
 
 
-make install NOPROXY=%bypass_rcm_proxy%
+make install NOPROXY=%bypass_rcm_proxy% %1
