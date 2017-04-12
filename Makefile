@@ -114,7 +114,12 @@ boards:  mc5103sdk mb7707sdk mc7601sdk mc12101sdk nmserver
 download-nmc: $(PACKAGES_NMC)
 
 #-------------------------------------------------------
+test:
+	@echo **********
+	@echo ** TEST **
+	@echo **********
 
+	
 install-nmsdk:  nmsdk 
 	setenv -$(USER)a NEURO $(realpath .)/nmsdk
 	setenv -$(USER)a PATH %%NEURO%\bin;
@@ -330,7 +335,7 @@ path:
 
 clean:
 	-$(OS_RM) *.zip *.exe *.tgz *.tar *.gz
-	-$(OS_RD) mb7707sdk mc5103sdk mc7601sdk mc12101sdk nmsdk nmserver asm-highlighter-master gnuwin32 gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32 lua
+	-$(OS_RD) arm-rcm-linux-gnueabihf\ nm_io mb7707sdk mc5103sdk mc7601sdk mc12101sdk nmsdk nmserver asm-highlighter-master gnuwin32 gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32 lua
 
 clean-nmc:
 	-$(OS_RM) $(PACKAGES_NMC)  winpcap
