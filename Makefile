@@ -69,7 +69,8 @@ export PATH := $(NEURO)/bin;$(PATH);
   HIGHLIGHTER_URL    = https://github.com/RC-MODULE/asm-highlighter/archive/master.zip
   
   #ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
-
+  $(MINGW_URL)       = http://win-builds.org/1.5.0/win-builds-1.5.0.exe
+  
 ## SCRIPTS:
   LUA_URL        = http://downloads.sourceforge.net/project/luabinaries/5.2.4/Tools%20Executables/lua-5.2.4_Win32_bin.zip
 
@@ -108,6 +109,9 @@ PACKAGES_NMC = $(notdir $(NMC_URLS))
 install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 nm_io
 
 install-brd:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
+
+install-gcc:  $(notdir $(MINGW_URL)) 
+	$(notdir $(MINGW_URL)) 
 
 boards:  mc5103sdk mb7707sdk mc7601sdk mc12101sdk nmserver
 
@@ -330,6 +334,8 @@ path:
 
 #	(setx ppp %NEURO% %len%) else echo wtf
 
+win-builds-1.5.0.exe:
+	$(OS_WGET) $(GCC_URL) 
 
 #################### cleanup ##################################################################################
 
