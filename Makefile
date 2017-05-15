@@ -35,7 +35,8 @@ export PATH := $(NEURO)/bin;$(PATH);
 ## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20160527.zip
-  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20161123.zip 
+  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20161123.zip 
+  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2017_05_15_non_official.zip
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-20160804.tar.gz
   #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
   VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
@@ -69,7 +70,7 @@ export PATH := $(NEURO)/bin;$(PATH);
   HIGHLIGHTER_URL    = https://github.com/RC-MODULE/asm-highlighter/archive/master.zip
   
   #ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
-  $(MINGW_URL)       = http://win-builds.org/1.5.0/win-builds-1.5.0.exe
+  MINGW_URL         = http://win-builds.org/1.5.0/win-builds-1.5.0.exe
   
 ## SCRIPTS:
   LUA_URL        = http://downloads.sourceforge.net/project/luabinaries/5.2.4/Tools%20Executables/lua-5.2.4_Win32_bin.zip
@@ -109,9 +110,6 @@ PACKAGES_NMC = $(notdir $(NMC_URLS))
 install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 nm_io
 
 install-brd:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
-
-install-gcc:  $(notdir $(MINGW_URL)) 
-	$(notdir $(MINGW_URL)) 
 
 boards:  mc5103sdk mb7707sdk mc7601sdk mc12101sdk nmserver
 
@@ -334,8 +332,11 @@ path:
 
 #	(setx ppp %NEURO% %len%) else echo wtf
 
-win-builds-1.5.0.exe:
-	$(OS_WGET) $(GCC_URL) 
+install-gcc:
+	$(OS_WGET) -r --no-parent --no-host-directories http://win-builds.org/1.5.0/packages/
+	$(OS_WGET) $(MINGW_URL) 
+	ren $(notdir $(MINGW_URL)) win-builds.exe
+	win-builds.exe
 
 #################### cleanup ##################################################################################
 
