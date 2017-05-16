@@ -107,9 +107,9 @@ PACKAGES_NMC = $(notdir $(NMC_URLS))
 
 
 
-install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 nm_io
+install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 install-nm_io
 
-install-brd:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
+install-boards:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
 
 boards:  mc5103sdk mb7707sdk mc7601sdk mc12101sdk nmserver
 
@@ -253,6 +253,9 @@ $(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
 	$(OS_WGET) $(VSHELL32_DIST) $(NOPROXY)
 
 #---------------------------------------------------------
+install-nm_io: nm_io
+	setenv -$(USER)a NM_IO $(realpath .)/nm_io
+
 nm_io: $(notdir $(NM_IO_URL)) 
 	$(OS_UNZIP) $(<) 
 
@@ -332,7 +335,7 @@ path:
 
 #	(setx ppp %NEURO% %len%) else echo wtf
 
-install-gcc:
+mingw:
 	$(OS_WGET) -r --no-parent --no-host-directories http://win-builds.org/1.5.0/packages/
 	$(OS_WGET) $(MINGW_URL) 
 	ren $(notdir $(MINGW_URL)) win-builds.exe
