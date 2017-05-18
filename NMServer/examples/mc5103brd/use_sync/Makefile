@@ -17,7 +17,7 @@ host.exe: host.cpp
 	"$(VS80COMNTOOLS)..\..\vc\vcvarsall.bat" && cl host.cpp $(MC5103)/libload/mc5103load.lib -I$(MC5103)/libload /MT /EHsc 
 
 hostrpc.exe: host.cpp
-	"$(VS80COMNTOOLS)..\..\vc\vcvarsall.bat" && cl host.cpp $(ROOT)\lib\nmClientLoad-x86.lib -I$(MC5103)\libload /MT /EHsc /Fehostrpc
+	"$(VS80COMNTOOLS)..\..\vc\vcvarsall.bat" && cl host.cpp $(ROOT)\lib\nmClientLoad-x86.lib -I$(MC5103)/libload /MT /EHsc /Fehostrpc
 	
 run: hostrpc.exe
 	hostrpc
