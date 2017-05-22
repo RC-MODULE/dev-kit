@@ -41,6 +41,7 @@ export PATH := $(NEURO)/bin;$(PATH);
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-20160804.tar.gz
   #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
   VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
+  VCREDIST13_URL     = https://download.microsoft.com/download/4/9/B/49BAC912-B6EF-4A34-A17C-06673338A7FC/vcredist_x64.exe
   NMCALC_URL         = http://www.module.ru/mb7707/NeuroMatrix/nmcalculator.zip 
   # Pure NMC Board support:
   MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
@@ -130,9 +131,11 @@ install-nmsdk:  nmsdk
 	@echo ** Installation Neuro Matrix SDK completed!  **
 	@echo ***********************************************
 
-nmsdk: $(notdir $(NMSDK_URL)) $(notdir $(VCREDIST_URL))
+nmsdk: $(notdir $(NMSDK_URL)) $(notdir $(VCREDIST_URL)) $(notdir $(VCREDIST13_URL))
 	$(OS_UNZIP) $(<) -d nmsdk
 	-$(notdir $(VCREDIST_URL))
+	-$(notdir $(VCREDIST13_URL))
+	
 
 $(notdir $(NMSDK_URL)):
 	$(OS_WGET) $(NMSDK_URL) $(NOPROXY)
@@ -140,6 +143,9 @@ $(notdir $(NMSDK_URL)):
 $(notdir $(VCREDIST_URL)):
 	$(OS_WGET) $(VCREDIST_URL)
 
+$(notdir $(VCREDIST13_URL)):
+	$(OS_WGET) $(VCREDIST_URL)
+	
 #---------------------------------------------------------------	
 nmcalculator: $(notdir $(NMCALC_URL)) 
 	$(OS_UNZIP) $(<) 
