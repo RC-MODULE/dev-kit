@@ -37,7 +37,8 @@ export PATH := $(NEURO)/bin;$(PATH);
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20160527.zip
   #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20161123.zip 
   #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2017_05_15_non_official.zip
-  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-2017-05-19_non_official.zip
+  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-2017-05-19_non_official.zip
+  NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2017-25-22_non_official.zip
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-20160804.tar.gz
   #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
   VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
@@ -144,7 +145,7 @@ $(notdir $(VCREDIST_URL)):
 	$(OS_WGET) $(VCREDIST_URL)
 
 $(notdir $(VCREDIST13_URL)):
-	$(OS_WGET) $(VCREDIST_URL)
+	$(OS_WGET) $(VCREDIST13_URL)
 	
 #---------------------------------------------------------------	
 nmcalculator: $(notdir $(NMCALC_URL)) 
