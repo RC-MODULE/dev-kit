@@ -313,12 +313,17 @@ $(notdir $(FIRMWARE7707_URL)):
 
 ############################################
 
+install-lua: lua
+	setenv -$(USER)a PATH $(realpath .)/lua
+	
 lua: $(notdir $(LUA_URL))
 	$(OS_UNZIP) $(<) -d lua
 
 $(notdir $(LUA_URL)): 
 	$(OS_WGET) $(LUA_URL) 
 
+
+	
 set-neuro: 	
 	setenv -$(USER)a NEURO $(realpath .)/nmsdk
 	
