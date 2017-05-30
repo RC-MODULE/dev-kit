@@ -324,7 +324,7 @@ lua: $(notdir $(LUA_URL))
 $(notdir $(LUA_URL)): 
 	$(OS_WGET) $(LUA_URL) 
 
-lua: $(notdir $(TCL_URL))
+tcl: $(notdir $(TCL_URL))
 	$(OS_UNZIP) $(<) -d lua
 
 $(notdir $(TCL_URL)): 
