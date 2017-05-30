@@ -54,8 +54,8 @@ export PATH := $(NEURO)/bin;$(PATH);
   WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
   VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
   VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
-  #NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
-  NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io-2017-03-02.zip
+  NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
+  #NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io-2017-03-02.zip
   NMSERVER_URL       = http://www.module.ru/mb7707/NeuroMatrix/nmserver.zip
   # ARM-NMC MB7707 support :
   EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
