@@ -79,7 +79,7 @@ export PATH := $(NEURO)/bin;$(PATH);
   
 ## SCRIPTS:
   LUA_URL        = http://downloads.sourceforge.net/project/luabinaries/5.2.4/Tools%20Executables/lua-5.2.4_Win32_bin.zip
-  TCL_URL        = https://www.activestate.com/activetcl/downloads/thank-you?dl=http://downloads.activestate.com/ActiveTcl/releases/8.6.4.1/ActiveTcl8.6.4.1.299124-win32-x86_64-threaded.exe
+  TCL_URL        = http://downloads.activestate.com/ActiveTcl/releases/8.6.4.1/ActiveTcl8.6.4.1.299124-win32-x86_64-threaded.exe
 ## LINKS:
 # * [PUTTY's homepage]           http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
 # * [Visual Studio 2005 Express](http://apdubey.blogspot.ru/2009/04/microsoft-visual-studio-2005-express.html)
