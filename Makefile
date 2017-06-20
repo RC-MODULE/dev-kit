@@ -26,7 +26,7 @@ SHELL       = cmd
 else
 
 endif
-SHELL    = cmd
+
 OS_RM    = del /Q
 OS_RD    = rd /Q /S 
 OS_WGET  = wget -nc --no-check-certificate --content-disposition --tries=2
