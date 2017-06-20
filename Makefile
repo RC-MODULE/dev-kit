@@ -20,6 +20,12 @@
 #export  https_proxy=http://login:pass@proxyserver:port
 #export  http_proxy =http://login:pass@proxyserver:port
 SETENV  =n
+
+ifeq ($(OS),Windows_NT)
+SHELL       = cmd
+else
+
+endif
 SHELL    = cmd
 OS_RM    = del /Q
 OS_RD    = rd /Q /S 
