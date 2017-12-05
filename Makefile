@@ -55,12 +55,12 @@ export PATH := $(NEURO)/bin;$(PATH);
 #MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
   MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib.zip
   MC7601SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
-  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_mb12103_distrib_v_01_00_x32.zip
+  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_v_03_00_x32.zip
   MB7707SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
   WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
   VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
   VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
-  NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
+  #NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
   NMSERVER_URL       = http://www.module.ru/mb7707/NeuroMatrix/nmserver.zip
   # ARM-NMC MB7707 support :
   EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
@@ -97,7 +97,6 @@ export PATH := $(NEURO)/bin;$(PATH);
 NMC_URLS = \
 	$(NMSDK_URL)      \
 	$(VCREDIST_URL)	  \
-	$(NM_IO_URL)      \
 	$(NMCALC_URL)     \
 	$(MC5103SDK_URL) \
 	$(MC7601SDK_URL) \
@@ -115,7 +114,7 @@ PACKAGES_NMC = $(notdir $(NMC_URLS))
 
 
 
-install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 install-nm_io
+install-nmc:  install-nmsdk nmcalculator highlighter edcltool-win32 
 
 install-boards:  install-mc5103sdk install-mb7707sdk install-mc7601sdk install-mc12101sdk
 
@@ -266,15 +265,6 @@ $(notdir $(VSHELL32_URL)) $(notdir $(VSHELL32_DIST)):
 	$(OS_WGET) $(VSHELL32_DIST) $(NOPROXY)
 
 #---------------------------------------------------------
-install-nm_io: nm_io
-	setenv -$(USER)a NM_IO $(realpath .)/nm_io
-
-nm_io: $(notdir $(NM_IO_URL)) 
-	$(OS_UNZIP) $(<) 
-
-$(notdir $(NM_IO_URL)):
-	$(OS_WGET) $(NM_IO_URL) $(NOPROXY)
-
 
 ################## ARM NMC support ############################################################	
 PACKAGES_ARM = $(notdir $(SYSROOT_URL)  $(FIRMWARE7707_URL) $(ARM_TOOLCHAIN_URL)) nmc-utils-0.1.1.zip	
@@ -369,7 +359,7 @@ mingw:
 
 clean:
 	-$(OS_RM) *.zip *.exe *.tgz *.tar *.gz
-	-$(OS_RD) arm-rcm-linux-gnueabihf\ nm_io mb7707sdk mc5103sdk mc7601sdk mc12101sdk nmsdk nmserver asm-highlighter-master gnuwin32 gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32 lua
+	-$(OS_RD) arm-rcm-linux-gnueabihf\  mb7707sdk mc5103sdk mc7601sdk mc12101sdk nmsdk nmserver asm-highlighter-master gnuwin32 gcc-linaro-arm-linux-gnueabihf-4.8-2013.10_win32 rootfs nmc-utils-0.1.1 raspbian-jessie-matlab nmcalculator edcltool-win32 lua
 
 clean-nmc:
 	-$(OS_RM) $(PACKAGES_NMC)  winpcap
