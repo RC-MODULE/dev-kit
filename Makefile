@@ -38,62 +38,21 @@ export NEURO = $(realpath ./nmsdk)
 export PATH := $(NEURO)/bin;$(PATH);
 
 
-## SDK/LIBRARIES/TOOLS/TOOLCHAINS:
-  #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2016-04-19_non_official.zip
-  #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20160527.zip
-  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20161123.zip 
-  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2017_05_15_non_official.zip
-  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-2017-05-19_non_official.zip
-  #NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk_2017-25-22_non_official.zip
+
+  
+# SDK/LIBRARIES/TOOLS/TOOLCHAINS:
   NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20170622.zip
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-20160804.tar.gz
   #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
   VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
   VCREDIST13_URL     = https://download.microsoft.com/download/4/9/B/49BAC912-B6EF-4A34-A17C-06673338A7FC/vcredist_x64.exe
-  NMCALC_URL         = http://www.module.ru/mb7707/NeuroMatrix/nmcalculator.zip 
-  # Pure NMC Board support:
-#MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01_with_printf_non_official.zip
-  MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib.zip
-  MC7601SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
-  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_v_03_00_x32.zip
-  MB7707SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
-  WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
+
+# x86-development shells, nm-tools & addons
   VSHELL32_DIST      = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32_1.0.0.26.exe
   VSHELL32_URL       = http://www.module.ru/mb7707/NeuroMatrix/VSHELL32.ZIP
-  #NM_IO_URL          = http://www.module.ru/mb7707/NeuroMatrix/nm_io.zip
-  NMSERVER_URL       = http://www.module.ru/mb7707/NeuroMatrix/nmserver.zip
-  # ARM-NMC MB7707 support :
-  EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
-  NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
-  SYSROOT_URL        = http://www.module.ru/mb7707/random/matlab-dev/armhf-sdk-sysroot.tgz
-  SYSROOT_TAR		 = $(notdir $(basename $(SYSROOT_URL))).tar
-  FIRMWARE7707_URL   = http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
-  
-  FIRMWARE7707_TAR   = $(notdir $(basename $(FIRMWARE7707_URL)))
-  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
-  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-27062016.zip
-  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-03082016.zip
-  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/ci/toolchains/raspbian/windows/arm-rcm-linux-gnueabihf-07092016.zip
-  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/ci/toolchains/debian-armhf/windows/arm-rcm-linux-gnueabihf-22112016.zip	  
-  HIGHLIGHTER_URL    = https://github.com/RC-MODULE/asm-highlighter/archive/master.zip
-  
-  #ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
-  MINGW_URL         = http://win-builds.org/1.5.0/win-builds-1.5.0.exe
-  
-## SCRIPTS:
-  LUA_URL        = http://downloads.sourceforge.net/project/luabinaries/5.2.4/Tools%20Executables/lua-5.2.4_Win32_bin.zip
-  TCL_URL        = http://downloads.activestate.com/ActiveTcl/releases/8.6.4.1/ActiveTcl8.6.4.1.299124-win32-x86_64-threaded.exe
-## LINKS:
-# * [PUTTY's homepage]           http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
-# * [Visual Studio 2005 Express](http://apdubey.blogspot.ru/2009/04/microsoft-visual-studio-2005-express.html)
-# * [Visual Studio 2013 Express](https://www.microsoft.com/en-US/download/details.aspx?id=44914)    
-#
-## FOR LINUX:
-#  MC5103SDK_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01.tar.gz
-#  MB7707SDK_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_00.tar.gz
-#  NMSDK_URL      = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk.tar.gz
-  
-  
+  NMCALC_URL         = http://www.module.ru/mb7707/NeuroMatrix/nmcalculator.zip 
+  HIGHLIGHTER_URL    = https://github.com/RC-MODULE/asm-highlighter/archive/master.zip  
+
 NMC_URLS = \
 	$(NMSDK_URL)      \
 	$(VCREDIST_URL)	  \
@@ -104,10 +63,52 @@ NMC_URLS = \
 	$(EDCLTOOL_URL)   \
 	$(WINPCAP_URL)
 	
-	  
+# NMC Board support:
+  MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib.zip
+  MC7601SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
+  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_v_03_00_x32.zip
+  MB7707SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
+  WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
+  NMSERVER_URL       = http://www.module.ru/mb7707/NeuroMatrix/nmserver.zip
 
-install:  install-nmc  install-arm
-download: download-nmc   download-arm
+  
+# ARM-NMC MB7707 support :
+  EDCLTOOL_URL       = http://www.module.ru/mb7707/edcltool-bin/edcltool-20042015-win32.tgz
+  NMC_UTILS_URL      = https://github.com/RC-MODULE/nmc-utils/archive/0.1.1.zip
+  SYSROOT_URL        = http://www.module.ru/mb7707/random/matlab-dev/armhf-sdk-sysroot.tgz
+  SYSROOT_TAR		 = $(notdir $(basename $(SYSROOT_URL))).tar
+  FIRMWARE7707_URL   = http://www.module.ru/mb7707/random/matlab-dev/raspbian-jessie-matlab.tar.gz
+  FIRMWARE7707_TAR   = $(notdir $(basename $(FIRMWARE7707_URL)))
+  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/linaro/windows/arm-linux-gnueabihf-16062016.tgz
+  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-27062016.zip
+  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/toolchains/windows/arm-rcm-linux-gnueabihf-03082016.zip
+  #ARM_TOOLCHAIN_URL = http://www.module.ru/mb7707/ci/toolchains/raspbian/windows/arm-rcm-linux-gnueabihf-07092016.zip
+  ARM_TOOLCHAIN_URL  = http://www.module.ru/mb7707/ci/toolchains/debian-armhf/windows/arm-rcm-linux-gnueabihf-22112016.zip	  
+  #ARM_TOOLCHAIN_TAR  = $(notdir $(basename $(ARM_TOOLCHAIN_URL))).tar
+  
+# x86 Compilers  
+  MINGW_URL         = http://win-builds.org/1.5.0/win-builds-1.5.0.exe
+# * [Visual Studio 2005 Express](http://apdubey.blogspot.ru/2009/04/microsoft-visual-studio-2005-express.html)
+# * [Visual Studio 2013 Express](https://www.microsoft.com/en-US/download/details.aspx?id=44914)    
+  
+## SCRIPTS:
+#  LUA_URL        = http://downloads.sourceforge.net/project/luabinaries/5.2.4/Tools%20Executables/lua-5.2.4_Win32_bin.zip
+#  TCL_URL        = http://downloads.activestate.com/ActiveTcl/releases/8.6.4.1/ActiveTcl8.6.4.1.299124-win32-x86_64-threaded.exe
+## LINKS:
+# * [PUTTY's homepage]           http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+#
+## FOR LINUX:
+#  MC5103SDK_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib_v_01_01.tar.gz
+#  MB7707SDK_URL = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_v_01_00.tar.gz
+#  NMSDK_URL      = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk.tar.gz
+  
+  
+
+	
+all: download install	  
+
+install:  install-nmc  
+download: download-nmc   
 
 ####################### nmc support ######################################		
 PACKAGES_NMC = $(notdir $(NMC_URLS)) 
@@ -128,7 +129,6 @@ test:
 	@echo ** TEST **
 	@echo **********
 
-	
 install-nmsdk:  nmsdk 
 	setenv -$(USER)a NEURO $(realpath .)/nmsdk
 	setenv -$(USER)a PATH %%NEURO%\bin;
