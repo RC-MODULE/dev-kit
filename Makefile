@@ -66,7 +66,7 @@ NMC_URLS = \
 # NMC Board support:
   MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib.zip
   MC7601SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
-  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_v_03_00_x32.zip
+  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_v_03_01_x32_non_official.zip
   MB7707SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
   WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
   NMSERVER_URL       = http://www.module.ru/mb7707/NeuroMatrix/nmserver.zip
