@@ -130,8 +130,8 @@ test:
 	@echo **********
 
 install-nmsdk:  nmsdk 
-	setenv -$(USER)a NEURO $(realpath .)/nmsdk
-	setenv -$(USER)a PATH %%NEURO%\bin;
+	setenv -ua NEURO $(realpath .)/nmsdk
+	setenv -ua PATH %%NEURO%\bin;
 	@echo ***********************************************
 	@echo ** Installation Neuro Matrix SDK completed!  **
 	@echo ***********************************************
@@ -182,12 +182,12 @@ $(notdir $(EDCLTOOL_URL)):
 
 #----------------------------------------------------------
 install-mc5103sdk: mc5103sdk ./nmsdk/bin/mc5103_mon.abs
-	setenv -$(USER)a MC5103 $(realpath .)/mc5103sdk
-	setenv -$(USER)a PATH %%MC5103%\bin;
-	@echo *********************************************
-	@echo ** Installation MC5103SDK completed!       **
-	@echo ** Install board driver manualy            **
-	@echo *********************************************
+	setenv -ua MC5103 $(realpath .)/mc5103sdk
+	setenv -ua PATH %%MC5103%\bin;
+	@echo ***********************************************************
+	@echo ** Installation MC5103SDK completed in user space!       **
+	@echo ** Install board driver manualy                          **
+	@echo ***********************************************************
 
 mc5103sdk: $(notdir $(MC5103SDK_URL)) 
 	$(OS_UNZIP) $(<) -d mc5103sdk
@@ -238,12 +238,12 @@ $(notdir $(MC7601SDK_URL)):
 #---------------------------------------------------------
 	
 install-mc12101sdk: mc12101sdk
-	setenv -$(USER)a MC12101 $(realpath .)/mc12101sdk
-	setenv -$(USER)a PATH %%MC12101%\bin;
-	@echo *********************************************
-	@echo ** Installation MC12101SDK completed!      **
-	@echo ** Install board driver manualy            **
-	@echo *********************************************
+	setenv -ua MC12101 $(realpath .)/mc12101sdk
+	setenv -ua PATH %%MC12101%\bin;
+	@echo ***********************************************************
+	@echo ** Installation MC12101SDK completed in user space!      **
+	@echo ** Install board driver manualy                          **
+	@echo ***********************************************************
 
 mc12101sdk: $(notdir $(MC12101SDK_URL)) 
 	$(OS_UNZIP) $(<) -d mc12101sdk 
