@@ -66,7 +66,7 @@ NMC_URLS = \
 # NMC Board support:
   MC5103SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc5103_distrib.zip
   MC7601SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mc7601_distrib_non_official.zip
-  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_v_03_01_x32_non_official.zip
+  MC12101SDK_URL     = http://www.module.ru/mb7707/NeuroMatrix/boards/mc12101_v_03_03_x32.zip
   MB7707SDK_URL      = http://www.module.ru/mb7707/NeuroMatrix/boards/mb7707_distrib_x32.zip
   WINPCAP_URL        = https://www.winpcap.org/install/bin/WinPcap_4_1_3.exe
   NMSERVER_URL       = http://www.module.ru/mb7707/NeuroMatrix/nmserver.zip
@@ -204,7 +204,7 @@ install-mb7707sdk: mb7707sdk
 	setenv -$(USER)a MB7707 $(realpath .)/mb7707sdk
 	setenv -$(USER)a MB7707MAC 1A-2B-3C-4D-5E-6F
 	setenv -$(USER)a MB7707ETH 1
-	setenv -$(USER)a PATH %%MB7707%\bin;
+	setenv -$(USER)a PATH %%MB7707%\bin
 	@echo *********************************************
 	@echo ** Installation MB7707SDK completed!       **
 	@echo ** Install board driver manualy            **
@@ -223,8 +223,9 @@ $(notdir $(WINPCAP_URL)):
 
 #----------------------------------------------------------
 install-mc7601sdk: mc7601sdk
-	setenv -$(USER)a MC7601 $(realpath .)/mc7601sdk
-	setenv -$(USER)a PATH %%MC7601%\bin;
+	setenv -ua MC7601 $(realpath .)/mc7601sdk
+	setenv -ua MC7601IP 192.168.1.2
+	setenv -ua PATH %%MC7601%\bin
 	@echo *********************************************
 	@echo ** Installation MC7601SDK completed!       **
 	@echo *********************************************
@@ -239,7 +240,7 @@ $(notdir $(MC7601SDK_URL)):
 	
 install-mc12101sdk: mc12101sdk
 	setenv -ua MC12101 $(realpath .)/mc12101sdk
-	setenv -ua PATH %%MC12101%\bin;
+	setenv -ua PATH %%MC12101%\bin
 	@echo ***********************************************************
 	@echo ** Installation MC12101SDK completed in user space!      **
 	@echo ** Install board driver manualy                          **
@@ -255,7 +256,7 @@ $(notdir $(MC12101SDK_URL)):
 #---------------------------------------------------------	
 install-vshell32: vshell32
 	setenv -$(USER)a VSHELL32 $(realpath .)/vshell32
-	setenv -$(USER)a PATH %%VSHELL32%\bin;
+	setenv -$(USER)a PATH ;%%VSHELL32%\bin
 
 vshell32: $(notdir $(VSHELL32_URL)) 
 	$(OS_UNZIP) $(<) 
