@@ -201,10 +201,10 @@ $(notdir $(MC5103SDK_URL)):
 
 #----------------------------------------------------------
 install-mb7707sdk: mb7707sdk
-	setenv -$(USER)a MB7707 $(realpath .)/mb7707sdk
-	setenv -$(USER)a MB7707MAC 1A-2B-3C-4D-5E-6F
-	setenv -$(USER)a MB7707ETH 1
-	setenv -$(USER)a PATH %%MB7707%\bin;
+	setenv -ua MB7707 $(realpath .)/mb7707sdk
+	setenv -ua MB7707MAC 1A-2B-3C-4D-5E-6F
+	setenv -ua MB7707ETH 1
+	setenv -ua PATH %%MB7707%\bin;
 	@echo *********************************************
 	@echo ** Installation MB7707SDK completed!       **
 	@echo ** Install board driver manualy            **
