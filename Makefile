@@ -44,7 +44,9 @@ export PATH := $(NEURO)/bin;$(PATH);
   NMSDK_URL          = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk307en_20170622.zip
   #NMSDK_URL         = http://www.module.ru/mb7707/toolchains-neuromatrix/nmsdk-20160804.tar.gz
   #NMSDK_TAR   		 = $(notdir $(basename $(NMSDK_URL)))
-  VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
+  #VCREDIST_URL       = https://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe
+  #2005
+  VCREDIST_URL       = https://download.microsoft.com/download/d/3/4/d342efa6-3266-4157-a2ec-5174867be706/vcredist_x86.exe
   VCREDIST13_URL     = https://download.microsoft.com/download/4/9/B/49BAC912-B6EF-4A34-A17C-06673338A7FC/vcredist_x64.exe
 
 # x86-development shells, nm-tools & addons
@@ -60,6 +62,7 @@ NMC_URLS = \
 	$(MC5103SDK_URL) \
 	$(MC7601SDK_URL) \
 	$(MB7707SDK_URL) \
+	$(MC12101SDK_URL) \
 	$(EDCLTOOL_URL)   \
 	$(WINPCAP_URL)
 	
