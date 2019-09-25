@@ -1,33 +1,32 @@
-﻿#[dev-kit](https://github.com/RC-MODULE/dev-kit)
+﻿# [dev-kit](https://github.com/RC-MODULE/dev-kit)
 
 Онлайн загрузчик средств разработки NMC/ARM/x86 приложений под ОС Windows. 
 Загрузчик позволяет загрузить и установить последние актуальные версии средств разработки ПО для вычислительный модулей: МВ77.07, МЦ51.03, МЦ76.01, МЦ121.01 
 
-##Комплект инструментов для разработки NeuroMatrix приложений:  
-- nmsdk - NeuroMatrix SDK  для процессоров на базе ядра nmc и nmc3 (NM6403,NM6405, NM6406)
-- vcredist_x86.exe - [Microsoft Visual C++ 2005 SP1 Redistributable Package (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=5638) (требуется для работы NMSDK)
+## Комплект инструментов для разработки NeuroMatrix приложений:  
+- nmsdk - NeuroMatrix SDK  для процессоров на базе ядра nmc и nmc3 (NM6403,NM6405, NM6406, NM6407)
+- vcredist_x86.exe - [Microsoft Visual C++ 2005 SP1 Redistributable Package (x86)](https://www.microsoft.com/en-us/download/confirmation.aspx?id=3387) (требуется для работы NMSDK)
 - mb7707sdk  - комплект поддержки вычислительного модуля МВ77.07  
 - mc5103sdk  - комплект поддержки вычислительного модуля МЦ51.03  
 - mc7601sdk  - комплект поддержки вычислительного модуля МЦ76.01  
 - mc12101sdk - комплект поддержки вычислительного модуля МЦ121.01  
-- nm_io - библиотека поддержки printf для модуля МЦ51.03 и МЦ121.01  
 - nmcalculator  - интерактивный помощник при разработке программного обеспечения для процессора NeuroMatrix
 - nmc-utils  - поддержка для модуля МВ77.07 [libeasynmc and userspace Neuromatrix DSP tools](https://github.com/RC-MODULE/nmc-utils)  
 - edcltool-win32 -  поддержка для модуля МВ77.07 . Инструмент для написания edcl сценариев на языке lua.  
 - nmserver - сервис для доступа к плате (МЦ51.03 и МЦ121.01) с удаленного компьютера 
 
-##Комплект инструментов для разработки ARM-приложений:
+## Комплект инструментов для разработки ARM-приложений:
 - rootfs - корневая папка файловой системы для кросс-компиляции ARM-приложений для модуля МВ77.07
 - i686-w64-mingw32 - toolchain для ARM
 
 
-#Зависимости
+# Зависимости
   Для запуска загрузчика необходимы установленные gnuwin32 утилиты https://github.com/RC-MODULE/gnuwin32-lite
   
 
 # Установка 
 0.Для скачивания, распаковки и корректного трансилирования makefile-ов.
-  Требуются: wget,unzip,make и прочие GnuWin утилиты. Установить все необходимые утилиты можно с помощью online-инсталятора https://github.com/RC-MODULE/gnuwin32-lite
+  Требуются: wget,unzip,make и прочие GnuWin утилиты. Установить все необходимые утилиты можно с помощью online-инсталятора https://github.com/RC-MODULE/gnuwin32-lite  
 1.Скачать данный проект или архив https://github.com/RC-MODULE/dev-kit/archive/master.zip  
 2.Распаковать и в консольном окне перейти в dev-kit-master  
 3.Cкачать необходимые пакеты:   (установить переменные http_proxy и https_proxy если используется прокси-сервер)
