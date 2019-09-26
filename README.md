@@ -13,20 +13,20 @@
 - nmcalculator  - интерактивный помощник при разработке программного обеспечения для процессора NeuroMatrix
 - nmc-utils  - поддержка для модуля МВ77.07 [libeasynmc and userspace Neuromatrix DSP tools](https://github.com/RC-MODULE/nmc-utils)  
 - edcltool-win32 -  поддержка для модуля МВ77.07 . Инструмент для написания edcl сценариев на языке lua.  
-- nmserver - сервис для доступа к плате (МЦ51.03 и МЦ121.01) с удаленного компьютера 
 
 ## Комплект инструментов для разработки ARM-приложений:
 - rootfs - корневая папка файловой системы для кросс-компиляции ARM-приложений для модуля МВ77.07
 - i686-w64-mingw32 - toolchain для ARM
 
-
 # Зависимости
   Для запуска загрузчика необходимы установленные gnuwin32 утилиты https://github.com/RC-MODULE/gnuwin32-lite
-  
 
 # Установка 
 0.Для скачивания, распаковки и корректного трансилирования makefile-ов.
-  Требуются: wget,unzip,make и прочие GnuWin утилиты. Установить все необходимые утилиты можно с помощью online-инсталятора https://github.com/RC-MODULE/gnuwin32-lite  
+  Требуются: [wget](http://gnuwin32.sourceforge.net/packages/wget.htm),
+  [unzip](https://sourceforge.net/projects/gnuwin32/files/unzip/5.51-1/),
+  [make](http://gnuwin32.sourceforge.net/packages/make.htm)
+[premake](https://github.com/premake/premake-core/releases/tag/v5.0.0-alpha14)  и прочие GnuWin утилиты. Установить все необходимые утилиты можно с помощью online-инсталятора https://github.com/RC-MODULE/gnuwin32-lite  
 1.Скачать данный проект или архив https://github.com/RC-MODULE/dev-kit/archive/master.zip  
 2.Распаковать и в консольном окне перейти в dev-kit-master  
 3.Cкачать необходимые пакеты:   (установить переменные http_proxy и https_proxy если используется прокси-сервер)
